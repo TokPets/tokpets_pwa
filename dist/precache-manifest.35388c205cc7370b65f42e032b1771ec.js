@@ -12,15 +12,15 @@ self.__precacheManifest = [
     "url": "/js/chunk-vendors.23f268f9.js"
   },
   {
-    "revision": "7fdc8b9ef7da9a2aa0ea",
-    "url": "/js/app.6bad9851.js"
+    "revision": "3cea68874e3c42786914",
+    "url": "/js/app.df364630.js"
   },
   {
     "revision": "8871b0dd4d9fc9649819",
     "url": "/js/about.a956700f.js"
   },
   {
-    "revision": "6851595f79743f1eaad17a486a12a4b1",
+    "revision": "74be880bc34cb3ad2b4cca3ca91978e8",
     "url": "/index.html"
   },
   {
@@ -40,7 +40,7 @@ self.__precacheManifest = [
     "url": "/fonts/Mindset-Slim.6db7aefb.ttf"
   },
   {
-    "revision": "7fdc8b9ef7da9a2aa0ea",
-    "url": "/css/app.5855df5e.css"
+    "revision": "3cea68874e3c42786914",
+    "url": "/css/app.ac3ac11b.css"
   }
 ];

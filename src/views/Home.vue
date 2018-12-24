@@ -44,9 +44,9 @@
 
           <div class="form-group">
             <h1>OWNER INFO</h1>
-            <div class="input-group">
+            <div class="input-group" v-for="field in USER_FIELDS">
               <img class="" alt="" src="">
-              <input type="text" placeholder="Field 1">
+              <input type="text" :placeholder="field.placeholder">
             </div>
           </div>
 
@@ -151,19 +151,19 @@ export default {
     let USER_FIELDS = Object.keys(this.USER);
     let PET_FIELDS = Object.keys(this.PET);
 
-/*
+
     this.USER_FIELDS = USER_FIELDS.map( user_field => {
       return {
-
+        placeholder : user_field
       }
     });
 
      this.PET_FIELDS = PET_FIELDS.map( pet_field => {
       return {
-
+        placeholder: pet_field
       }
     });
-*/
+
     console.error('USER_FIELDS')
     console.error(USER_FIELDS)
 
