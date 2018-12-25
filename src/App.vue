@@ -6,17 +6,16 @@
     </div>
 
     <div class="app-content">
-
       <router-view/>
-
     </div>
-
     
   </div>
 </template>
 
 <script>
 /* eslint-disable */
+import firebase from "firebase";
+
 export default {
   name: "App",
   
@@ -25,7 +24,14 @@ export default {
   },
 
   mounted(){
-    setTimeout( () => { this.LOADING = false; }, 100);
+    firebase.auth().onAuthStateChanged( (user) => {
+      if (user) {
+          setTimeout( () => { this.LOADING = false; }, 100);
+          this.$router.push('main');
+      }else{
+          setTimeout( () => { this.LOADING = false; }, 100);
+      }
+    });
   },
 
 

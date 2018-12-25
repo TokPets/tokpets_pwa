@@ -30,11 +30,18 @@ let config = {
 
 firebase.initializeApp(config);
 
+const firestore = firebase.firestore();
+const settings = {/* your settings... */ timestampsInSnapshots: true};
+
+var db = firebase.database();
+firestore.settings(settings);
+
 
 Vue.use(VModal)
 
 Vue.use(VueAnalytics, {
-  id: 'UA-128950882-1'
+  id: 'UA-128950882-1',
+  router
 })
 
 new Vue({

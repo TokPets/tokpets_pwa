@@ -4,55 +4,12 @@
     <img  class="main-logo" alt="TokPets Logo" src="../assets/large_title_and_logo.png">
 
     <tabs class="tabs">
-
       <tab title=" - SIGN IN - " active="true">
-       <form v-on:submit.prevent="onSubmitSignIn">
-          <div class="input-group email">
-            <img class="email" src="../assets/icons/email.png" alt="Email Icon" >
-            <input type="email" placeholder="Ingresa tu Email" v-model="USER.email">
-          </div>
-          <div class="input-group password">
-            <img class="password" src="../assets/icons/lock.png" alt="Password Icon" >
-            <input type="password" placeholder="Ingresa tu Password" v-model="USER.password">
-          </div>
-          <input type="submit" value="SIGN IN">
-          <a @click="doShowResetPasswordModal()"> Forgot your password? </a>
-        </form>
+        <form-sign-in/>
+        <a @click="doShowModal()"> Forgot your password? </a>
       </tab>
-
       <tab title=" - SIGN UP - ">
-         <form class="Form-Pet-Info" v-on:submit.prevent="onSubmitSignUp">
-
-          <div class="form-group">
-            <h1>PET INFORMATION</h1>
-            <div class="pet-icons">
-              
-              <img src="../assets/icons/dog_normal.png" alt="Dog Icon" class="pet-icon-dog" v-if="PET.type=='dog'" @click="PET.type = 'dog'">
-              <img src="../assets/icons/dog_inverted.png" alt="Dog Icon" class="pet-icon-dog" v-if="PET.type !='dog'" @click="PET.type = 'dog'">
-
-              <img src="../assets/icons/dog_normal.png" alt="Cat Icon" class="pet-icon-cat" v-if="PET.type=='cat'" @click="PET.type = 'cat'">
-              <img src="../assets/icons/dog_inverted.png" alt="Cat Icon" class="pet-icon-cat" v-if="PET.type !='cat'" @click="PET.type = 'cat'">
-
-            </div>
-
-            <div class="input-group" v-for="field in PET_FIELDS">
-              <img class="" alt="" src="">
-              <input type="text" :placeholder="field.placeholder">
-            </div>
-
-          </div>
-
-          <div class="form-group">
-            <h1>OWNER INFO</h1>
-            <div class="input-group" v-for="field in USER_FIELDS">
-              <img class="" alt="" src="">
-              <input type="text" :placeholder="field.placeholder">
-            </div>
-          </div>
-
-          <input type="submit" value="SING UP">
-
-        </form>
+         <form-sign-up/>
       </tab>
     </tabs>
 
@@ -62,13 +19,7 @@
       <div class="modal-content">
         <h1>RESET PASSWORD</h1>
         <p>We will send you an email to reset your password</p>
-        <form class="dark-form" v-on:submit.prevent="doPasswordReset()">
-          <div class="input-group email">
-            <img class="email" src="../assets/icons/email.png" alt="Email Icon" >
-            <input type="email" placeholder="Ingresa tu Email" v-model="USER.email">
-          </div>
-          <input type="submit" value="-SUBMIT-">
-        </form>
+        <form-recovery-password/>
       </div>
     </modal>
 
@@ -82,6 +33,8 @@
 /* -- Import Vendors & Libs ------------ */
 /* ------------------------------------- */
 import firebase from "firebase";
+import { page } from 'vue-analytics'
+
 /* ------------------------------------- */
 
 
@@ -89,6 +42,9 @@ import firebase from "firebase";
 /* -- Import Components ---------------- */
 /* ------------------------------------- */
 import { Tabs, Tab } from "./../components/Tabs/index.js";
+import FormSignIn from "./../components/FormAuth/FormSignIn";
+import FormSignUp from "./../components/FormAuth/FormSignUp";
+import FormRecoveryPassword from "./../components/FormAuth/FormRecoveryPassword";
 /* ------------------------------------- */
 
 
@@ -102,76 +58,37 @@ import TokPet from './../models/pet.model.js';
 
 
 export default {
+
   name: "home",
-  components: { Tabs, Tab },
+
+  components: { 
+    Tabs, Tab,
+    FormSignIn,
+    FormSignUp,
+    FormRecoveryPassword
+  },
+
   methods: {
-    onSubmitSignIn() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.USER.email, this.USER.password)
-        .then(response => {
-          console.warn('*** SIGN IN')
-          console.log(response);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+
+    track () {
+      page('/')
     },
-    onSubmitSignUp() {
-      firebase
-        .auth().createUserWithEmailAndPassword(this.USER.email, this.USER.password)
-        .then(response => {
-          console.warn('*** SIGN IN')
-          console.log(response);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    },
-    doPasswordReset(){
-      const emailAddress = this.USER.email;
-      firebase.auth().sendPasswordResetEmail(emailAddress).then( response => {
-        this.$modal.hide('reset-password-modal');
-      }).catch( error => {
-        console.error(error);
-      });
-    },
-    doShowResetPasswordModal(){
+
+    doShowModal(){
       this.$modal.show('reset-password-modal');
     }
+
   },
+
+  created(){
+
+  },
+
   mounted(){
 
-    let tokUser = new TokUser();
-    this.USER = tokUser;
+    // Google Analytics Track
+    this.track();
 
-    let tokPet = new TokPet();
-    this.PET = tokPet;
-
-    let USER_FIELDS = Object.keys(this.USER);
-    let PET_FIELDS = Object.keys(this.PET);
-
-
-    this.USER_FIELDS = USER_FIELDS.map( user_field => {
-      return {
-        placeholder : user_field
-      }
-    });
-
-     this.PET_FIELDS = PET_FIELDS.map( pet_field => {
-      return {
-        placeholder: pet_field
-      }
-    });
-
-    console.error('USER_FIELDS')
-    console.error(USER_FIELDS)
-
-    console.error('PET_FIELDS')
-    console.error(PET_FIELDS)
-
-
-    
   },
   data() {
     return {

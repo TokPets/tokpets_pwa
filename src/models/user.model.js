@@ -12,7 +12,6 @@ class TokUser {
         this.phone = '';
 
         this.email = '';
-        this.password = '';
     }
 }
 

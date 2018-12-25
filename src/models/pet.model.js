@@ -2,8 +2,8 @@
 "use strict";
 
 
-
 class TokPet {
+
     constructor(){
         this.name = '';
         this.gender = '';
@@ -15,6 +15,8 @@ class TokPet {
         this.city = '';
         this.trackerCode = '';
     }
+
+
 }
 
 export default TokPet;
