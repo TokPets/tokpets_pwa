@@ -14,31 +14,24 @@ import './plugins/axios'
 
 Vue.config.productionTip = false;
 
+var firebase = require('firebase/app');
+
 // Initialize Firebase
-
-//import firebase from 'firebase/app'
-let firebase = require('firebase/app');
-
-let config = {
-  apiKey: 'AIzaSyCfjpFwtYK3ju4OvT-wlqd8iS9INhfMcpw',
-  authDomain: 'tokpetsapp.firebaseapp.com',
-  databaseURL: 'https://tokpetsapp.firebaseio.com',
-  projectId: 'tokpetsapp',
-  storageBucket: 'tokpetsapp.appspot.com',
-  messagingSenderId: '359710188847'
-}
-
+var config = {
+  apiKey: "AIzaSyBOt3k5zNJ34ii-pVyojeMvOTNt_D0tM34",
+  authDomain: "web-gastroinnova.firebaseapp.com",
+  databaseURL: "https://web-gastroinnova.firebaseio.com",
+  projectId: "web-gastroinnova",
+  storageBucket: "web-gastroinnova.appspot.com",
+  messagingSenderId: "418551106596"
+};
 firebase.initializeApp(config);
 
 const firestore = firebase.firestore();
-const settings = {/* your settings... */ timestampsInSnapshots: true};
-
-var db = firebase.database();
-firestore.settings(settings);
+firestore.settings({ timestampsInSnapshots: true });
 
 
 Vue.use(VModal)
-
 Vue.use(VueAnalytics, {
   id: 'UA-128950882-1',
   router

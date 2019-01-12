@@ -26,11 +26,13 @@ export default {
   mounted(){
     firebase.auth().onAuthStateChanged( (user) => {
       if (user) {
-          setTimeout( () => { this.LOADING = false; }, 100);
           this.$router.push('main');
-      }else{
-          setTimeout( () => { this.LOADING = false; }, 100);
       }
+      
+      setTimeout( () => { 
+        this.LOADING = false; 
+      }, 500);
+
     });
   },
 

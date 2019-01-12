@@ -80,3 +80,11 @@ input[type="text"], textarea, [contenteditable]
     -ms-user-select: text;
     user-select: text;
 }
+input:-internal-autofill-previewed, input:-internal-autofill-selected, textarea:-internal-autofill-previewed, textarea:-internal-autofill-selected, select:-internal-autofill-previewed, select:-internal-autofill-selected {
+    background-color: rgb(250, 255, 189,0) !important;
+    background-image: none !important;
+    color: rgb(0, 0, 0) !important;
+}
+input:-webkit-autofill {
+    color: #2a2a2a !important;
+}

@@ -2,17 +2,17 @@
 "use strict";
 
 class TokUser {
-    constructor(){
-        this.name = '';
-        this.birthday = '';
-        
-        this.country = '';
-        this.city = '';
+  constructor() {
+    this.name = "";
+    this.birthday = "";
 
-        this.phone = '';
+    this.country = "";
+    this.city = "";
 
-        this.email = '';
-    }
+    this.phone = "";
+
+    this.email = "";
+  }
 }
 
 export default TokUser;
