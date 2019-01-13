@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "tokpetsapp"
+    "default": "tokpetsapp",
+    "dev-stage": "dev-tokpets-pwa-c6c74",
+    "test-stage": "test-tokpets-pwa",
+    "qa-stage": "qa-tokpets-pwa",
+    "prod-stage": "prod-tokpets-pwa"
   }
 }
