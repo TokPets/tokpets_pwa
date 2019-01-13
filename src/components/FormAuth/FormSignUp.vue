@@ -13,7 +13,7 @@
 
             </div>
 
-            <div class="input-group" v-for="field in PET_FIELDS">
+            <div class="input-group" v-for="field in PET_FIELDS" v-bind:key="field.placeholder">
               <img class="" alt="" src="">
               <input type="text" :placeholder="field.placeholder">
             </div>
@@ -22,7 +22,7 @@
 
           <div class="form-group">
             <h1>OWNER INFO</h1>
-            <div class="input-group" v-for="field in USER_FIELDS">
+            <div class="input-group" v-for="field in USER_FIELDS" v-bind:key="field.placeholder">
               <img class="" alt="" src="">
               <input type="text" :placeholder="field.placeholder">
             </div>
