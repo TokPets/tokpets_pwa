@@ -1,0 +1,101 @@
+/**
+*
+*
+*
+*
+*/
+
+form{
+    input[type=submit] {
+        background-color: #282828;
+        color: #ffffff;
+        border: none;
+        width: 100%;
+        border-radius: 10em;
+        padding: 0.5em;
+        margin: 1em 0em;
+        box-sizing: border-box;
+    }
+    a{
+        color: @color-black;
+        padding-bottom: 0.15em;
+        text-decoration: none;
+        border-bottom: 1px solid @color-black;
+    }
+}
+
+.form-group{
+
+}
+
+.input-group{
+
+    img{
+        width: 1em;
+        padding: 0.25em;
+        &.password{
+            width: 0.7em;
+        }
+    }
+
+    input{
+        color: black;
+        background-color: rgba(0,0,0,0);
+        padding: 0.5em;
+        outline: none;
+        border: none;
+    }
+
+    background-image: url("./../../assets/bg_dots.png");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 3.5em;
+
+    padding-bottom: 7px;
+    padding-top: 3px;
+
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+
+form.dark-form{
+    background-color: @color-white;
+     border-radius: 10px  !important;
+     .input-group{
+       padding: 0.25em;
+       width: 100%;
+       box-sizing: border-box;
+      background-image: url("./../../assets/bg_dots_inv.png");
+
+     }
+     input[type=submit] {
+       background-color:@color-cream;
+       color: @color-black;
+       display: block;
+       margin: 1em auto;
+       width: 60%;
+     }
+}
