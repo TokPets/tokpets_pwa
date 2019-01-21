@@ -8,28 +8,28 @@ self.__precacheManifest = [
     "url": "/robots.txt"
   },
   {
-    "revision": "9b07cdeca4af4a8527d243fbb1592098",
-    "url": "/img/loading_spinner_gif.9b07cdec.gif"
-  },
-  {
-    "revision": "7ab417cb12f57b0582dd",
-    "url": "/js/app.4b460f9e.js"
+    "revision": "3829afbb8d404f17e508",
+    "url": "/js/main.f9bc09a2.js"
   },
   {
     "revision": "5c6f233d2710d545d91c",
     "url": "/js/chunk-vendors.29e8adbe.js"
   },
   {
-    "revision": "3829afbb8d404f17e508",
-    "url": "/js/main.f9bc09a2.js"
+    "revision": "b1ef04efe0d21e958969",
+    "url": "/js/app.1be77d2a.js"
   },
   {
     "revision": "3765d4d07e3772e22fbd",
     "url": "/js/about.3a61ef71.js"
   },
   {
-    "revision": "ed9e221e66393844c903d06fd24e70fb",
+    "revision": "a440425e68950a4f73281972c3b56f83",
     "url": "/index.html"
+  },
+  {
+    "revision": "9b07cdeca4af4a8527d243fbb1592098",
+    "url": "/img/loading_spinner_gif.9b07cdec.gif"
   },
   {
     "revision": "ccd204efea60df6dba5006d90795a171",
@@ -40,15 +40,11 @@ self.__precacheManifest = [
     "url": "/img/dog_inverted.23ba2028.png"
   },
   {
-    "revision": "6db7aefb7df24efd9d074580ea0e5621",
-    "url": "/fonts/Mindset-Slim.6db7aefb.ttf"
-  },
-  {
     "revision": "3829afbb8d404f17e508",
     "url": "/css/main.0e433876.css"
   },
   {
-    "revision": "7ab417cb12f57b0582dd",
-    "url": "/css/app.ea5035a8.css"
+    "revision": "b1ef04efe0d21e958969",
+    "url": "/css/app.58996b9e.css"
   }
 ];

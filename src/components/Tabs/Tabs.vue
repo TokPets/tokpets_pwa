@@ -1,14 +1,14 @@
 <template>
   <div>
     <ul class="tabs-header">
-      <li class="tab-header"
+      <li
+        class="tab-header"
         v-for="(tab, index) in tabList"
         v-bind="tab.dataAttrs"
         :key="index"
         :class="{'active': isActive(index), 'disabled': tab.disabled}"
-        @click="select(index)">
-        {{ tab.title }}
-      </li>
+        @click="select(index)"
+      >{{ tab.title }}</li>
     </ul>
     <div class="tab-content">
       <slot></slot>
@@ -56,6 +56,7 @@ export default {
 
 
 <style lang="less" scoped>
+/*
 @import (reference) "../../styles/main.less";
 
 .tabs-header {
@@ -105,4 +106,5 @@ export default {
   -ms-flex-item-align: auto;
   align-self: auto;
 }
+*/
 </style>

@@ -33,6 +33,18 @@ class TokAuthHelper {
       });
     });
   }
+
+  doCheckIsUserIsLogged(){
+    return new Promise((resolve) => {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          resolve(true);
+        }else{
+          resolve(false);
+        }
+      });
+    });
+  }
 }
 
 export default TokAuthHelper;
