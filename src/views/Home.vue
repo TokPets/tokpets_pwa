@@ -72,7 +72,6 @@ export default {
 
     <img class="home-view-logo" alt="TokPets Logo" src="../assets/large_title_and_logo.png">
     
-    
     <tabs class="tabs">
       <tab title=" - SIGN IN - " active="true">
        <!-- <form-sign-in/> -->
@@ -125,6 +124,7 @@ export default {
         
         display:block;
         margin: 0 auto;
+        padding: 0px;
 
         width: 40vw;
         height: 75vw;
