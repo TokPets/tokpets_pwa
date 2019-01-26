@@ -1,25 +1,7 @@
  <template>
   <form v-on:submit.prevent="onSubmitSignIn">
-    <div class="input-group email">
-      <img class="email" src="@/assets/icons/email.png" alt="Email Icon">
-      <input
-        type="email"
-        placeholder="Ingresa tu Email"
-        v-model="USER.email"
-        required
-        aria-required="true"
-      >
-    </div>
-    <div class="input-group password">
-      <img class="password" src="@/assets/icons/lock.png" alt="Password Icon">
-      <input
-        type="password"
-        placeholder="Ingresa tu Password"
-        v-model="USER.password"
-        required
-        aria-required="true"
-      >
-    </div>
+    <form-input-email></form-input-email>
+    <form-input-password></form-input-password>
     <input type="submit" value="SIGN IN">
   </form>
 </template>
@@ -28,37 +10,23 @@
 /* eslint-disable */
 
 /* ------------------------------------- */
-/* -- Import Vendors & Libs ------------ */
+/* -- Import Form's Inputs ------------ */
 /* ------------------------------------- */
-import firebase from "firebase";
+  import FormInputEmail from "./FormSignIn_Inputs/FormInputEmail";
+  import FormInputPassword from "./FormSignIn_Inputs/FormInputPassword";
 /* ------------------------------------- */
 
 export default {
   name: "FormSignIn",
 
-  components: {},
+  components: {
+    FormInputEmail,
+    FormInputPassword
+  },
 
   methods: {
     onSubmitSignIn() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.USER.email, this.USER.password)
-        .then(response => {
-          this.$ga.event({
-            eventCategory: "auth_sign_in",
-            eventAction: "successful",
-            eventLabel: "ok"
-          });
-
-          this.$router.push("main");
-        })
-        .catch(error => {
-          this.$ga.event({
-            eventCategory: "auth_sign_in",
-            eventAction: "error",
-            eventLabel: "error"
-          });
-        });
+    
     }
   },
 

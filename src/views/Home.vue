@@ -43,7 +43,7 @@ export default {
     },
 
     doShowModal() {
-      this.$modal.show("reset-password-modal");
+      this.$modal.show("modal-reset-password");
     }
   },
 
@@ -72,25 +72,28 @@ export default {
 
     <img class="home-view-logo" alt="TokPets Logo" src="../assets/large_title_and_logo.png">
     
-    <tabs class="tabs">
+    <tabs class="home-view-tabs">
       <tab title=" - SIGN IN - " active="true">
-       <!-- <form-sign-in/> -->
+        <form-sign-in/>
         <a @click="doShowModal()">Forgot your password?</a>
       </tab>
       <tab title=" - SIGN UP - ">
-       <!--  <form-sign-up/> -->
+        <form-sign-up/>
       </tab>
     </tabs>
 
-  <!--
-    <modal name="reset-password-modal" :width="225" :height="200" transition="pop-out">
-      <div class="modal-content">
+  
+    <modal name="modal-reset-password" :width="225" :height="200" transition="pop-out">
+      <div class="home-view-modal">
+
         <h1>RESET PASSWORD</h1>
         <p>We will send you an email to reset your password</p>
+
         <form-recovery-password/>
+
       </div>
     </modal>
-    -->
+  
 
   </div>
 </template>
@@ -137,7 +140,9 @@ export default {
   // -- home-view-tabs  ------------------ //
   // ------------------------------------- //
       div.home-view-tabs{
-
+        display: block;
+        width: 100%;
+        max-width: ~"70vw";
       }
   // ------------------------------------- //
 
@@ -146,7 +151,7 @@ export default {
   // -- home-view-modal  ----------------- //
   // ------------------------------------- //
       div.home-view-modal{
-
+        #ModalResetPassword();
       }
   // ------------------------------------- //
 

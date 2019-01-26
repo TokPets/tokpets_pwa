@@ -39,6 +39,7 @@ export default {
 <template>
   <div id="app">
 
+
     <div class="app-loading" v-if="LOADING">
       <img src="./assets/loading_spinner_gif.gif">
     </div>
@@ -46,6 +47,7 @@ export default {
     <div class="app-content" v-if="!LOADING">
       <router-view/>
     </div>
+
 
   </div>
 </template>
@@ -58,6 +60,7 @@ export default {
 
 
 <style lang="less">
+
   @import './styles/main.less';
 
 #app,.app-loading,.app-content{
@@ -70,5 +73,22 @@ export default {
 
   width: 100vw;
   height: 100vh;
+
 }
+
+.app-loading{
+
+  .flex-display(flex);
+  .flex-direction(column);
+  .align-items(center);
+  .flex-wrap(wrap);
+  .justify-content(center);
+  .align-content(center);
+  .align-items(center);
+
+  img{
+    display: block;
+  }
+}
+
 </style>

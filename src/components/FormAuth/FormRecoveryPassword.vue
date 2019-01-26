@@ -74,7 +74,7 @@ export default {
  <template>
   <div>
 
-    <div class="error-message" v-if="ERROR.PASSWORD_RESET">
+    <div class="error-message" v-if="ERROR.PASSWORD_RESET && false">
       {{ ERROR.PASSWORD_RESET }}
     </div>
 
@@ -90,16 +90,8 @@ export default {
 </template>
 
 <style lang="less" scoped>
-/*
-@import (reference) "./../../styles/main.less";
-
-.error-message{
-    text-align: center;
-    color: pink;
-    font-size: 0.85em;
-    text-transform: uppercase;
-    padding: 0.25em;
-    margin: 0.25em;
+form{
+  padding: 0.5em 0em;
+  margin: 0.5em 0em;
 }
-*/
 </style>
