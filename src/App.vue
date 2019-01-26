@@ -12,7 +12,7 @@ export default {
 
     const authHelper = new TokAuthHelper();
     authHelper.doCheckIsUserIsLogged().then( isLogged => {
-      if(isLogged){
+      if(isLogged && false){
         this.$router.push("main");
       } else  {
         setTimeout(() => {

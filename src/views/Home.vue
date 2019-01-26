@@ -47,7 +47,10 @@ export default {
     }
   },
 
-  created() {},
+  created() {
+    this.WINDOW.width = Math.max(window.screen.width*0.8, 250);
+    this.WINDOW.height = Math.max(window.screen.height*0.3, 250);
+  },
 
   mounted() {
     // Google Analytics Track
@@ -58,8 +61,10 @@ export default {
       USER: {},
       ERROR: {},
       PET: {},
-      USER_FIELDS: [],
-      PET_FIELDS: []
+      WINDOW : {
+        width: '',
+        height: ''
+      }
     };
   }
 };
@@ -83,7 +88,7 @@ export default {
     </tabs>
 
   
-    <modal name="modal-reset-password" :width="225" :height="200" transition="pop-out">
+    <modal name="modal-reset-password" :width="WINDOW.width" :height="WINDOW.height" transition="pop-out">
       <div class="home-view-modal">
 
         <h1>RESET PASSWORD</h1>

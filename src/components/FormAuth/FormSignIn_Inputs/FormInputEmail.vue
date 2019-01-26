@@ -8,8 +8,8 @@ export default {
   components: {},
 
   methods: {
-      doNameTyped(emailString){
-          this.$emit('onEmailTyped', emailString);
+      doNameTyped(){
+          this.$emit('onEmailTyped', this.NAME);
       }
   },
 
@@ -18,6 +18,7 @@ export default {
 
   data() {
     return {
+      NAME : ''
     };
   }
 };
@@ -26,14 +27,7 @@ export default {
  <template>
   <div class="form-input-group">
     <img class="input-icon" alt="" src="./../../../assets/icons/email.png">
-    <input type="text" placeholder="Email">
+    <input type="text" placeholder="Email" @blur="doNameTyped()" v-model="NAME">
     <div class="dots-inv"></div>
   </div>
 </template>
-
-<style lang="less" scoped>
-.form-input-group{
-  width: 100%;
-  margin: 0em auto;
-}
-</style>

@@ -1,4 +1,5 @@
-// auth.helper.js
+/* eslint-disable */
+
 "use strict";
 
 /* ------------------------------------- */
@@ -43,6 +44,14 @@ class TokAuthHelper {
           resolve(false);
         }
       });
+    });
+  }
+
+  doLogging(user_email,user_password){
+    return new Promise((resolve) => {
+      firebase.auth().signInWithEmailAndPassword(user_email, user_password)
+      .then( response => resolve({status : true , message : response}) )
+      .catch( error => resolve({ status : false, message : error}) );
     });
   }
 }

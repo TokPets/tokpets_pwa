@@ -8,7 +8,9 @@ export default {
   components: {},
 
   methods: {
-
+      doPasswordTyped(){
+          this.$emit('onPasswordTyped', this.PASSWORD);
+      }
   },
 
   mounted() {
@@ -16,17 +18,16 @@ export default {
 
   data() {
     return {
+      PASSWORD : ""
     };
   }
 };
 </script>
 
  <template>
-  <div>
-    <H1>this is an PASSWORD</H1>
+  <div class="form-input-group">
+    <img class="input-icon" alt="" src="./../../../assets/icons/email.png">
+    <input type="password" placeholder="Password" @blur="doPasswordTyped()" v-model="PASSWORD">
+    <div class="dots-inv"></div>
   </div>
 </template>
-
-<style lang="less" scoped>
-
-</style>

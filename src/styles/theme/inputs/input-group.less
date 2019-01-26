@@ -91,7 +91,7 @@
         padding: 0.25em;
     }
     
-    input[type="text"]{
+    input[type="text"],input[type="password"]{
 
         display: inline-block;
         vertical-align: middle;
@@ -157,10 +157,11 @@
                     h1{
                         display: block;
                         position: absolute;
+                        color: @color-white;
                         font-family: 'HelveticaNeue-Bold';
                         font-weight: 300;
-                        bottom: 0.25em;
-                        left: calc(50vw - 1.5em);
+                        bottom: 2.25em;
+                        left: calc(50vw - 1.75em);
                     }
                 }
             }
@@ -175,6 +176,7 @@
             display: block;
             margin: 0 auto;
             padding: 1em;
+            padding-top: 0em;
             width: 5em;
         }
     // ----------------------- //
@@ -233,6 +235,11 @@
                 .title{
                     display: inline-block;
                     vertical-align: middle;
+                    padding-left: 1em;
+                    font-family: 'HelveticaNeue-Light';
+                    &.active{
+                        font-weight: 900;
+                    }
                 }
                 .checkbox{
                     display: inline-block;

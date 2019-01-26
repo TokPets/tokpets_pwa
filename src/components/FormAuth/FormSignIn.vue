@@ -1,13 +1,7 @@
- <template>
-  <form v-on:submit.prevent="onSubmitSignIn">
-    <form-input-email></form-input-email>
-    <form-input-password></form-input-password>
-    <input type="submit" value="SIGN IN">
-  </form>
-</template>
-
 <script>
 /* eslint-disable */
+
+import TokAuthHelper from "./../../scripts/auth/auth.helper.js";
 
 /* ------------------------------------- */
 /* -- Import Form's Inputs ------------ */
@@ -26,23 +20,41 @@ export default {
 
   methods: {
     onSubmitSignIn() {
+      this.AUTH.doLogging(this.USER.email, this.USER.password).then( response => {
+        if(response.status){
+          console.warn(' WOW OMG ALL OK')
+        }else{
+          console.error(' TOK PETS APP ::  AUTH ERROR ')
+        }
+      })
+    },
     
+    doFormInputEventCatch(InputParameter,InputValue){
+      this.USER[InputParameter] = InputValue;
     }
+
   },
 
-  mounted() {},
+  created() {
+    this.AUTH = new TokAuthHelper();
+  },
 
   data() {
     return {
       USER: {
         email: "",
         password: ""
-      }
+      },
+      AUTH : {}
     };
   }
 };
 </script>
 
-<style lang="less" scoped>
-//  @import (reference) "./../../styles/main.less";
-</style>
+ <template>
+  <form v-on:submit.prevent="onSubmitSignIn">
+    <form-input-email @onEmailTyped = "doFormInputEventCatch('email',$event)"></form-input-email>
+    <form-input-password @onPasswordTyped = "doFormInputEventCatch('password',$event)"></form-input-password>
+    <input type="submit" value="SIGN IN">
+  </form>
+</template>

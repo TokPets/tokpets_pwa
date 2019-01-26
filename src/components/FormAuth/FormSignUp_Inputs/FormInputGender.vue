@@ -13,6 +13,13 @@ export default {
       setBreed(breed){
         this.BREED = breed;
         this.BREEDS.forEach( breed => breed.selected = false);
+        this.BREEDS.map( breed => {
+          if(breed.name == this.BREED){
+            breed.selected = true;
+          }else{
+            breed.selected = false;
+          }
+        })
         this.$emit('onBreedSelected', breed);
       }
   },
@@ -84,7 +91,7 @@ export default {
 
           <div class="wrapper" v-if="breed.name.toLowerCase().includes(UX.search.toLowerCase())" @click="setBreed(breed.name)">
             
-            <h4 class="title"> {{ breed.name }} </h4>
+            <h4 class="title" v-bind:class="{ active: breed.selected }"> {{ breed.name }} </h4>
 
             <div class="round">
               <input type="checkbox" :id="breed.name" v-model="breed.selected"/>
