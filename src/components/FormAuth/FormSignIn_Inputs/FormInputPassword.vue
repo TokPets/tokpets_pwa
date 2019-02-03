@@ -29,6 +29,7 @@ export default {
     <img class="input-icon" alt="" src="./../../../assets/icons/email.png">
     <input type="password" placeholder="Password" @blur="doPasswordTyped()" v-model="PASSWORD">
     <input type="text" placeholder="Password" @blur="doPasswordTyped()" v-model="PASSWORD">
+    <input type="password" placeholder="Mi Password">
     <div class="dots-inv"></div>
   </div>
 </template>
