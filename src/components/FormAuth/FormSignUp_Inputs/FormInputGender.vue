@@ -98,7 +98,7 @@ export default {
       <div class="title circle"> <h1>BREED</h1> </div>
     </div>
 
-<h1>{{ UX.modal.petType }}</h1>
+    <h1>{{ UX.modal.petType }}</h1>
     <img class="modal-icon" alt="Dog Logo" src="./../../../assets/icons/dog_simple.png">
 
     <div class="modal-search">
