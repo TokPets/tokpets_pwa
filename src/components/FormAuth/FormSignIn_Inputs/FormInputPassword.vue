@@ -32,7 +32,10 @@ export default {
     <input type="password" placeholder="Mi Password">
     <div class="dots-inv"></div>
 
-    <form action="myform.cgi"> 
-      <input type="password" name="password" id="password" maxlength="6"> <label for="password"> Type a fake password here</label> <br><input type="submit" value="Submit"> </form>
+    <form action="myforms.cgi"> 
+      <input type="password" name="password" id="password" maxlength="6">
+       <label for="password"> Type a fake password here</label> 
+       <br>
+       <input type="submit" value="Submit"> </form>
   </div>
 </template>
