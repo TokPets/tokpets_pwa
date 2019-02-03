@@ -22,7 +22,7 @@ export default {
     onSubmitSignIn() {
       this.AUTH.doLogging(this.USER.email, this.USER.password).then( response => {
         if(response.status){
-          console.warn(' WOW OMG ALL OK')
+          this.$router.push("main");
         }else{
           console.error(' TOK PETS APP ::  AUTH ERROR ')
         }

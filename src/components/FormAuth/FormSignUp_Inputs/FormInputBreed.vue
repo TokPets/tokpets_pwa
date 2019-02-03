@@ -1,7 +1,7 @@
 <script>
 /* eslint-disable */
 
-import jsonBreeds from "./_breeds.json";
+import jsonBreeds from "./_breeds_cats.json";
 
 export default {
   name: "FormInputBreed",
@@ -9,7 +9,6 @@ export default {
   components: {},
 
   methods: {
-
       setBreed(breed){
         this.BREED = breed;
         this.$emit('onBreedSelected', breed);
@@ -19,6 +18,7 @@ export default {
   created() {
     //https://dog.ceo/api/breeds/list/all
     this.BREEDS = jsonBreeds;
+    
   },
 
   computed: {

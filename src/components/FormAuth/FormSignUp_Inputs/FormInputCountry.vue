@@ -1,7 +1,6 @@
 <script>
 /* eslint-disable */
 
-
 export default {
   name: "FormInputCountry",
 
@@ -24,11 +23,6 @@ export default {
  <template>
   <div>
 
-    
-
   </div>
 </template>
 
-<style lang="less" scoped>
-
-</style>

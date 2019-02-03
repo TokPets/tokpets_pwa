@@ -1,12 +1,37 @@
 <script>
 /* eslint-disable */
-
-import jsonBreeds from "./_breeds.json";
+import dogsBreeds from "./_breeds_dogs.json";
+import catsBreeds from "./_breeds_cats.json";
 
 export default {
   name: "FormInputGender",
 
   components: {},
+
+  props: ['petType'],
+
+  watch: { 
+      petType: function (newPetType, oldVal) {
+
+        // Set UX.modal PetType
+        this.UX.modal.petType = newPetType;
+
+        // Load Breed's List
+        const BreedsSelectors = {
+          'dog' : dogsBreeds,
+          'cat' : catsBreeds
+        }
+        const _BREEDS = BreedsSelectors[newPetType];
+        _BREEDS.map( breed => {
+          return {
+              selected : false,
+              name : breed
+          }   
+        });
+
+        console.warn(_BREEDS)
+      }
+  },
 
   methods: {
 
@@ -25,21 +50,13 @@ export default {
   },
 
   created() {
-    //https://dog.ceo/api/breeds/list/all
-    jsonBreeds.map( breed => {
-      this.BREEDS.push({
-        selected : false,
-        name : breed
-      })
-    });
 
   },
 
+
   computed: {
     filteredItems() {
-      return this.BREEDS.filter(item => {
-         return item.includes(this.UX.search.toLowerCase())
-      })
+      return this.BREEDS.filter(item => item.includes(this.UX.search.toLowerCase()))
     }
   },
 
@@ -48,10 +65,13 @@ export default {
       
       UX : {
         modal:{
-          active: false
+          active: false,
+          petType : 'dog'
         },
         search: ''
       },
+
+
 
       BREEDS: [],
 

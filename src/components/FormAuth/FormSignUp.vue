@@ -14,8 +14,9 @@
       <form-input-name @onNameTyped = "doFormInputEventCatch('name',$event)"></form-input-name>
 
       <!-- Pet's Gender -->
-      <form-input-gender @onBreedSelected = "doFormInputEventCatch('breed',$event)"></form-input-gender>
-
+      <form-input-gender v-bind:pet-type="PET.type" @onBreedSelected = "doFormInputEventCatch('breed',$event)"></form-input-gender>
+   
+ 
       <!-- Pet's Birthday -->
       <form-input-birthday></form-input-birthday>
 
@@ -111,12 +112,8 @@ export default {
   },
 
   mounted() {
-
-    let tokUser = new TokUser();
-    let tokPet = new TokPet();
-
-    this.USER = tokUser;
-    this.PET = tokPet;
+    this.USER = new TokUser();
+    this.PET = new TokPet();
   },
 
   data() {
@@ -139,47 +136,5 @@ export default {
       text-align: center;
     }
   }
-/*
 
-
-.Form-Pet-Info{
-  background-color: white;
-  padding: 1em;
-  margin: 1em 0em;
-}
-.pet-icons{
-
-  width: 100%;
-  cursor: pointer;
-
-  .pet-icon-dog{
-    width: 50%;
-  }
-  .pet-icon-cat{
-    width: 50%;
-  }
-
-      display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-align-content: center;
-    -ms-flex-line-pack: center;
-    align-content: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
-
-
-*/
 </style>

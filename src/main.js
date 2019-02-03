@@ -8,6 +8,8 @@ import store from "./store/store";
 import VueAnalytics from "vue-analytics";
 import VModal from "vue-js-modal";
 
+import * as VueGoogleMaps from "vue2-google-maps";
+
 import "./registerServiceWorker";
 import "./plugins/axios";
 
@@ -33,6 +35,12 @@ Vue.use(VModal);
 Vue.use(VueAnalytics, {
   id: "UA-128950882-1",
   router
+});
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "REPLACE-THIS-WITH-YOUR-KEY-FROM-ABOVE",
+    libraries: "places" // necessary for places input
+  }
 });
 
 new Vue({
