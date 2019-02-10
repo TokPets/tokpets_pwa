@@ -14,10 +14,6 @@ export default {
     authHelper.doCheckIsUserIsLogged().then( isLogged => {
       if(isLogged && false){
         this.$router.push("main");
-      } else  {
-        setTimeout(() => {
-          this.LOADING = false;
-        }, 500);
       }
     });
 
@@ -25,7 +21,6 @@ export default {
 
   data() {
     return {
-      LOADING: true
     };
   }
 };
@@ -39,15 +34,9 @@ export default {
 <template>
   <div id="app">
 
-
-    <div class="app-loading" v-if="LOADING">
-      <img src="./assets/loading_spinner_gif.gif">
-    </div>
-
-    <div class="app-content" v-if="!LOADING">
+    <div class="app-content">
       <router-view/>
     </div>
-
 
   </div>
 </template>
