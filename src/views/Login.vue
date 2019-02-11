@@ -48,6 +48,10 @@ export default {
 
     doShowModal() {
       this.$modal.show("modal-reset-password");
+    },
+
+    setIntroLoaded(){
+      this.UI.isLoaded = true;
     }
   },
 
@@ -69,6 +73,9 @@ export default {
       WINDOW: {
         width: "",
         height: ""
+      },
+      UI:{
+        isLoaded: false
       }
     };
   }
@@ -80,7 +87,12 @@ export default {
 
   <div class="view login-view">
     <tok-cover-image/>
-    <tok-loading-bar/>
+    <tok-loading-bar @onLoaded="setIntroLoaded()"/>
+    <button class="button solid active">LOG IN</button>
+    <button class="button transparent">
+      <h2>CREATE ACCOUNT</h2>
+      <h3>I'M NEW IN TOK</h3>
+    </button>
   </div>
 
 </template>
