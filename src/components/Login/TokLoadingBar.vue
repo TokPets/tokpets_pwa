@@ -45,7 +45,7 @@ export default {
     display:block;
     width: 100vw;
     position: fixed;
-    bottom: 20vh;
+    bottom: 10vh;
     
 
     .background{
