@@ -4,21 +4,21 @@
 /* ---------------------------------------------------------- */
 /* -- Import Vendors & Libs --------------------------------- */
 /* ---------------------------------------------------------- */
-  import firebase from "firebase";
-  import { page } from "vue-analytics";
+import firebase from "firebase";
+import { page } from "vue-analytics";
 /* ---------------------------------------------------------- */
 
 /* ---------------------------------------------------------- */
 /* -- Import Components ------------------------------------- */
 /* ---------------------------------------------------------- */
-  //import { Tabs, Tab } from "./../components/Tabs/index.js";
+//import { Tabs, Tab } from "./../components/Tabs/index.js";
 
-  import TokCoverImage from "./../components/Login/TokCoverImage.vue";
-  import TokLoadingBar from "./../components/Login/TokLoadingBar.vue";
+import TokCoverImage from "./../components/Login/TokCoverImage.vue";
+import TokLoadingBar from "./../components/Login/TokLoadingBar.vue";
 
-  //import FormSignIn from "./../components/FormAuth/FormSignIn";
-  //import FormSignUp from "./../components/FormAuth/FormSignUp";
-  //import FormRecoveryPassword from "./../components/FormAuth/FormRecoveryPassword";
+//import FormSignIn from "./../components/FormAuth/FormSignIn";
+//import FormSignUp from "./../components/FormAuth/FormSignUp";
+//import FormRecoveryPassword from "./../components/FormAuth/FormRecoveryPassword";
 /* ---------------------------------------------------------- */
 
 /* ---------------------------------------------------------- */
@@ -38,10 +38,10 @@ export default {
     //FormSignUp,
     //FormRecoveryPassword,
     TokCoverImage,
-    TokLoadingBar 
+    TokLoadingBar
   },
 
-  methods: { 
+  methods: {
     track() {
       page("/");
     },
@@ -50,7 +50,7 @@ export default {
       this.$modal.show("modal-reset-password");
     },
 
-    setIntroLoaded(){
+    setIntroLoaded() {
       this.UI.isLoaded = true;
     }
   },
@@ -74,8 +74,10 @@ export default {
         width: "",
         height: ""
       },
-      UI:{
-        isLoaded: false
+      UI: {
+        isLoaded: false,
+        isButtonLoaded: false,
+        ActiveButton: "LOGIN"
       }
     };
   }
@@ -84,46 +86,77 @@ export default {
 
 
 <template>
-
   <div class="view login-view">
-    <tok-cover-image/>
-    <tok-loading-bar @onLoaded="setIntroLoaded()"/>
-    <button class="button solid active">LOG IN</button>
-    <button class="button transparent">
-      <h2>CREATE ACCOUNT</h2>
-      <h3>I'M NEW IN TOK</h3>
-    </button>
-  </div>
+    <div class="view-top">
+      <tok-cover-image :is-loaded="!UI.isButtonLoaded"/>
+    </div>
 
+    <div class="view-bottom">
+      <tok-loading-bar @onLoaded="setIntroLoaded()"/>
+
+      <button
+        class="button no-solid theme-light"
+        :class="{ active: UI.ActiveButton == 'LOGIN' }"
+        @click="UI.ActiveButton = 'LOGIN'; UI.isButtonLoaded = true"
+        v-if="UI.isLoaded"
+      >
+        <h2 class="button-title x100">LOG IN</h2>
+      </button>
+      
+      <button
+        class="button no-solid theme-light"
+        :class="{ active: UI.ActiveButton == 'SIGNUP' }"
+        @click="UI.ActiveButton = 'SIGNUP'; UI.isButtonLoaded = true"
+        v-if="UI.isLoaded"
+      >
+        <h2 class="button-title x75">CREATE ACCOUNT</h2>
+        <h3 class="button-subtitle x25">I'M NEW IN TOK</h3>
+      </button>
+    </div>
+  </div>
 </template>
 
 
 <style lang="less">
+@import (reference) "../styles/main.less";
 
-  @import (reference) "../styles/main.less";
+div.view.login-view {
+  #view();
+}
 
-  div.view.login-view {
-    #view();
-  }
+img.login-view-logo {
+  display: block;
+  margin: 0 auto;
+  padding: 0px;
 
+  width: 40vw;
+  height: 75vw;
+}
 
-  img.login-view-logo {
-    display: block;
-    margin: 0 auto;
-    padding: 0px;
+div.login-view-tabs {
+  display: block;
+  width: 100%;
+  max-width: ~"70vw";
+}
 
-    width: 40vw;
-    height: 75vw;
-  }
+div.login-view-modal {
+  #ModalResetPassword();
+}
 
-  div.login-view-tabs {
-    display: block;
-    width: 100%;
-    max-width: ~"70vw";
-  }
-
-  div.login-view-modal {
-    #ModalResetPassword();
-  }
-
+.view-top {
+  display: block;
+  width: 80vw;
+  height: 80vh;
+  position: fixed;
+  top: 10vh;
+  left: 10vw;
+}
+.view-bottom {
+  display: block;
+  width: 80vw;
+  height: 20vh;
+  position: fixed;
+  bottom: 5vh;
+  left: 10vw;
+}
 </style>

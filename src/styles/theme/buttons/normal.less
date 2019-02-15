@@ -1,0 +1,64 @@
+
+/**
+
+    <button class="button no-solid">
+      <h2 class="button-title">CREATE ACCOUNT</h2>
+      <h3 class="button-subtitle">I'M NEW IN TOK</h3>
+    </button>
+
+*/
+
+
+button.button{  
+
+    display: block;
+    width: 100%;
+    height: auto;
+
+    box-sizing: border-box;
+
+    padding: 0.5em;
+    margin: 0.5em;
+
+    background-color: rgba(0,0,0,0);
+    color: black;
+
+    font-family: 'HelveticaNeue-Bold';
+    font-size: 1em;
+    font-weight: 500;
+    
+    border-radius: 1em;
+    border-color: rgba(0,0,0,0);
+
+    &.active{
+        &.theme-light{
+            background-color: white;
+            color: black;
+        }
+        &.theme-dark{
+            background-color: black;
+            color: white;
+        }
+        
+    }
+
+
+    .button-title{
+        opacity: 1;
+    }
+    .button-subtitle{
+        opacity: 0.5;
+    }
+
+
+    .x100{
+        font-size: 1em;
+    }
+    .x75{
+        font-size: 0.85em;
+    }
+    .x25{
+       font-size: 0.75em;
+    }
+
+}
