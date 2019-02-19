@@ -8,18 +8,39 @@
 // ------------------------------------ //
 // -- Form Group Less ---------------- //
 // ------------------------------------ //
-.form-group{
+.input-group{
 
     display: block;
 
     width: 100%;
     height: auto;
     
-    padding: 1em;
+    padding: 1em 0em;
     margin: 0em;
     box-sizing: border-box;
 
-    background-color: @color-white;
+    background-color: rgba(0,0,0,0);
+
+
+    &-error{
+        color: red;
+    }
+
+    &-wrapper{
+        display: block;
+        .input-email{
+            display: inline-block;
+            width: ~"calc(100% - 1em)";
+            padding: 0px;
+            margin: 0px;
+        }
+        .input-icon{
+            display: inline-block;
+            width: 2em;
+            padding: 0px;
+            margin: 0px;
+        }
+    }
 
 }
 // ------------------------------------ //

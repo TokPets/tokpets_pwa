@@ -52,6 +52,24 @@ export default {
 
     setIntroLoaded() {
       this.UI.isLoaded = true;
+    },
+
+    goToLoginView(viewname) {
+      if (viewname === "SIGNIN") {
+        this.UI.ActiveButton = "SIGNIN";
+        this.UI.isButtonLoaded = true;
+        setTimeout(() => {
+          this.$router.push("login/signin");
+        }, 1000);
+      }
+
+      if (viewname === "SIGNUP") {
+        this.UI.ActiveButton = "SIGNUP";
+        this.UI.isButtonLoaded = true;
+        setTimeout(() => {
+          this.$router.push("login/signup");
+        }, 1000);
+      }
     }
   },
 
@@ -77,7 +95,7 @@ export default {
       UI: {
         isLoaded: false,
         isButtonLoaded: false,
-        ActiveButton: "LOGIN"
+        ActiveButton: "SIGNIN"
       }
     };
   }
@@ -96,8 +114,8 @@ export default {
 
       <button
         class="button no-solid theme-light"
-        :class="{ active: UI.ActiveButton == 'LOGIN' }"
-        @click="UI.ActiveButton = 'LOGIN'; UI.isButtonLoaded = true"
+        :class="{ active: UI.ActiveButton == 'SIGNIN' }"
+        @click="goToLoginView('SIGNIN')"
         v-if="UI.isLoaded"
       >
         <h2 class="button-title x100">LOG IN</h2>
@@ -105,8 +123,9 @@ export default {
       
       <button
         class="button no-solid theme-light"
+        style="color:white"
         :class="{ active: UI.ActiveButton == 'SIGNUP' }"
-        @click="UI.ActiveButton = 'SIGNUP'; UI.isButtonLoaded = true"
+        @click="goToLoginView('SIGNUP')"
         v-if="UI.isLoaded"
       >
         <h2 class="button-title x75">CREATE ACCOUNT</h2>
