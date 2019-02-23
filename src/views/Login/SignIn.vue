@@ -1,34 +1,39 @@
 <script>
 /* eslint-disable */
 
-/* ---------------------------------------------------------- */
-/* -- Import Vendors & Libs --------------------------------- */
-/* ---------------------------------------------------------- */
 import firebase from "firebase";
 import { page } from "vue-analytics";
-/* ---------------------------------------------------------- */
-
-/* ---------------------------------------------------------- */
-/* -- Import Components ------------------------------------- */
-/* ---------------------------------------------------------- */
-
-/* ---------------------------------------------------------- */
-
-/* ---------------------------------------------------------- */
-/* -- Import Models------------------------------------------- */
-/* ---------------------------------------------------------- */
 import TokUser from "./../../models/user.model.js";
 import TokPet from "./../../models/pet.model.js";
-/* ---------------------------------------------------------- */
+import FormInputEmail from "./../../components/FormAuth/FormSignIn_Inputs/FormInputEmail";
+import FormInputPassword from "./../../components/FormAuth/FormSignIn_Inputs/FormInputPassword";
 
 export default {
   name: "signin",
 
-  components: {},
+  components: {
+    FormInputEmail,
+    FormInputPassword
+  },
 
   methods: {
     track() {
-      page("/");
+      page("/login/signin/");
+    },
+    onSubmitSignIn() {
+      this.AUTH.doLogging(this.USER.email, this.USER.password).then(
+        response => {
+          if (response.status) {
+            this.$router.push("main");
+          } else {
+            console.error(" TOK PETS APP ::  AUTH ERROR ");
+          }
+        }
+      );
+    },
+
+    doFormInputEventCatch(InputParameter, InputValue) {
+      this.USER[InputParameter] = InputValue;
     }
   },
 
@@ -41,17 +46,7 @@ export default {
 
   data() {
     return {
-      USER: {},
-      ERROR: {},
-      PET: {},
-      UI: {
-        EMAIL: {
-          ICON:{
-            src: '../../assets/forms/check_negro.png',
-            alt: 'Email Tok Pets'
-          }
-        }
-      }
+      USER: new TokUser()
     };
   }
 };
@@ -60,36 +55,27 @@ export default {
 
 <template>
   <div class="view login-signin-view">
-    <img class="login-signin-view-logo" src="../../assets/login/tok_negro.png">
+    <div class="view-position-top">
+      <img class="logo" src="../../assets/login/tok_negro.png">
+    </div>
 
-    <form>
-      <div class="input-group input-email">
-        
-        <div class="input-group-error">
-          <span>Unregistred email</span>
-        </div>
+    <div class="view-position-middle">
+      <form v-on:submit.prevent="onSubmitSignIn">
+        <form-input-email @onEmailTyped="doFormInputEventCatch('email',$event)"></form-input-email>
+        <form-input-password @onPasswordTyped="doFormInputEventCatch('password',$event)"></form-input-password>
+      </form>
+    </div>
 
-        <div class="input-group-wrapper">
-          <input class="input-email" type="text" placeholder="E-mail">
-          <img class="input-icon" :src="UI.EMAIL.ICON.src" :alt="UI.EMAIL.ICON.alt"> 
-        </div>
-        
+    <div class="view-position-bottom">
+      <div class="buttons">
+        <button class="button theme-dark size-single-line">
+          <h2 class="button-title">LOGIN</h2>
+        </button>
+        <button class="button theme-transparent-dark size-double-line">
+          <h2 class="button-title">CREATE ACCOUNT</h2>
+          <h3 class="button-subtitle">I'M NEW IN TOK</h3>
+        </button>
       </div>
-    </form>
-
-    <div class="view-bottom">
-      <button class="button no-solid theme-dark active" @click="goToLoginView('SIGNIN')">
-        <h2 class="button-title x100">LOG IN</h2>
-      </button>
-      
-      <button
-        class="button no-solid theme-dark"
-        style="color:black"
-        @click="goToLoginView('SIGNUP')"
-      >
-        <h2 class="button-title x75">CREATE ACCOUNT</h2>
-        <h3 class="button-subtitle x25">I'M NEW IN TOK</h3>
-      </button>
     </div>
   </div>
 </template>
@@ -98,23 +84,29 @@ export default {
 <style lang="less">
 @import (reference) "../../styles/main.less";
 div.view.login-signin-view {
-  #view();
+  @layout-orientation: column;
+  @layout-position: center;
+  @layout-justify: space-between;
+  #view(@layout-orientation, @layout-position, @layout-justify);
+
+  box-sizing: border-box;
+  padding: 1em;
 }
 
-img.login-signin-view-logo {
-  display: block;
-  margin: 0 auto;
-  padding: 10vh;
-  width: ~"calc(100vw - 20vh)";
-  height: auto;
-}
-
-.view-bottom {
-  display: block;
-  width: 80vw;
-  height: 20vh;
-  position: fixed;
-  bottom: 5vh;
-  left: 10vw;
+.login-signin-view {
+  .logo {
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    padding: 0px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 80%;
+    height: auto;
+  }
+  div.buttons {
+  }
 }
 </style>

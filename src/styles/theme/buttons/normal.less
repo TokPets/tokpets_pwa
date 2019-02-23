@@ -7,7 +7,11 @@
     </button>
 
 */
-
+div.buttons{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}
 
 button.button{  
 
@@ -27,38 +31,47 @@ button.button{
     font-size: 1em;
     font-weight: 500;
     
-    border-radius: 1em;
+    border-radius: 10em;
     border-color: rgba(0,0,0,0);
 
-    &.active{
-        &.theme-light{
-            background-color: white;
-            color: black;
+    &.theme{
+        &-dark{
+            background-color: @color-black;
+            color: @color-white;
         }
-        &.theme-dark{
-            background-color: black;
-            color: white;
+        &-light{
+            background-color: @color-white;
+            color: @color-black;
         }
-        
+        &-transparent{
+             background-color: rgba(0,0,0,0,0);
+            &-dark{
+                color: @color-black;
+            }
+            &-light{
+                color: @color-white;
+            }
+        }
     }
 
+    &.size{
+        &-single-line{
+            h2.button-title{
+                font-size: 1em;
+            }
+        }
+        &-double-line{
+            h2.button-title{
+                font-size: 0.7em;
+            }
+            h3.button-subtitle{
+                font-size: 0.5em;
+                opacity: 0.8;
+            }
+        }
+    }
 
-    .button-title{
-        opacity: 1;
-    }
-    .button-subtitle{
-        opacity: 0.5;
-    }
-
-
-    .x100{
-        font-size: 1em;
-    }
-    .x75{
-        font-size: 0.85em;
-    }
-    .x25{
-       font-size: 0.75em;
-    }
 
 }
+
+

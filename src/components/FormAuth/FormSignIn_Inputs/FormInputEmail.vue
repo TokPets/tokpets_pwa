@@ -1,24 +1,22 @@
 <script>
 /* eslint-disable */
 
-
 export default {
   name: "FormInputEmail",
 
   components: {},
 
   methods: {
-      doNameTyped(){
-          this.$emit('onEmailTyped', this.NAME);
-      }
+    doNameTyped() {
+      this.$emit("onEmailTyped", this.NAME);
+    }
   },
 
-  mounted() {
-  },
+  mounted() {},
 
   data() {
     return {
-      NAME : ''
+      NAME: ""
     };
   }
 };
@@ -26,7 +24,6 @@ export default {
 
  <template>
   <div class="form-input-group">
-    <img class="input-icon" alt="" src="./../../../assets/icons/email.png">
     <input type="text" placeholder="Email" @blur="doNameTyped()" v-model="NAME">
     <div class="dots-inv"></div>
   </div>

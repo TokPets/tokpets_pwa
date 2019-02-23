@@ -46,7 +46,7 @@
 // ------------------------------------------------------------------ //
 // -- Class :: View ------------------------------------------------- //
 // ------------------------------------------------------------------ //
-#view(@layout-orientation: column, @layout-position: center){
+#view(@layout-orientation: column, @layout-position: center, @layout-justify: space-between){
 
 
     // ---------------------------------------- //
@@ -75,6 +75,7 @@
      .flex-display(flex);
      .flex-direction(@layout-orientation);
      .align-items(@layout-position);
+     .justify-content(@layout-justify);
 
     // ---------------------------------------- //
 
@@ -96,6 +97,10 @@
 
 }
 // ------------------------------------------------------------------ //
+
+
+
+
 
 
 
