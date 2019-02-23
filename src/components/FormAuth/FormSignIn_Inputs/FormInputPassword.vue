@@ -16,7 +16,8 @@ export default {
 
   data() {
     return {
-      PASSWORD: ""
+      PASSWORD: "",
+      ERRORS: []
     };
   }
 };
@@ -24,7 +25,18 @@ export default {
 
  <template>
   <div class="form-input-group">
-    <input type="password" placeholder="Password" @blur="doPasswordTyped()" v-model="PASSWORD">
-    <div class="dots-inv"></div>
+    <div class="input-message" v-if="ERRORS.length > 0">
+      <span class="error">ERROR</span>
+    </div>
+    <div class="input-content">
+      <input
+        type="password"
+        placeholder="Password"
+        @blur="doPasswordTyped()"
+        v-model="PASSWORD"
+        required
+      >
+      <div class="dots-inv"></div>
+    </div>
   </div>
 </template>
