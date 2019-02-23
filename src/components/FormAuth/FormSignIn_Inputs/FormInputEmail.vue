@@ -85,7 +85,7 @@ export default {
       </div>
     </div>
 
-    <div class="input-content" :class="CLASSES">
+    <div class="input-content" :class="CLASSES" @focus="addClass('on-focus')" @blur="removeClasS('on-focus')">
       <input type="text" placeholder="Email" @blur="doNameTyped()" v-model="EMAIL">
       <div class="dots-inv"></div>
     </div>
