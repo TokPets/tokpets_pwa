@@ -55,10 +55,14 @@ export default {
 
 <template>
   <div class="view login-signin-view">
+    <!-- -->
+    <!-- View.position :: TOP -->
     <div class="view-position-top">
       <img class="logo" src="../../assets/login/tok_negro.png">
     </div>
 
+    <!-- -->
+    <!-- View.position :: MIDDLE -->
     <div class="view-position-middle">
       <form v-on:submit.prevent="onSubmitSignIn">
         <form-input-email @onEmailTyped="doFormInputEventCatch('email',$event)"></form-input-email>
@@ -66,6 +70,8 @@ export default {
       </form>
     </div>
 
+    <!-- -->
+    <!-- View.position :: BOTTOM -->
     <div class="view-position-bottom">
       <div class="buttons">
         <button class="button theme-dark size-single-line">
