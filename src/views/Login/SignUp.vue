@@ -70,40 +70,4 @@ export default {
 div.view.login-view {
   #view();
 }
-
-img.login-view-logo {
-  display: block;
-  margin: 0 auto;
-  padding: 0px;
-
-  width: 40vw;
-  height: 75vw;
-}
-
-div.login-view-tabs {
-  display: block;
-  width: 100%;
-  max-width: ~"70vw";
-}
-
-div.login-view-modal {
-  #ModalResetPassword();
-}
-
-.view-top {
-  display: block;
-  width: 80vw;
-  height: 80vh;
-  position: fixed;
-  top: 10vh;
-  left: 10vw;
-}
-.view-bottom {
-  display: block;
-  width: 80vw;
-  height: 20vh;
-  position: fixed;
-  bottom: 5vh;
-  left: 10vw;
-}
 </style>

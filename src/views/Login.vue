@@ -113,23 +113,22 @@ export default {
       <tok-loading-bar @onLoaded="setIntroLoaded()"/>
 
       <button
-        class="button no-solid theme-light"
-        :class="{ active: UI.ActiveButton == 'SIGNIN' }"
+        class="button theme-light size-single-line"
+        :class="[{ active: UI.ActiveButton == 'SIGNIN' }]"
         @click="goToLoginView('SIGNIN')"
         v-if="UI.isLoaded"
       >
-        <h2 class="button-title x100">LOG IN</h2>
+        <h2 class="button-title">LOGIN</h2>
       </button>
       
       <button
-        class="button no-solid theme-light"
-        style="color:white"
-        :class="{ active: UI.ActiveButton == 'SIGNUP' }"
+        class="button theme-transparent-light size-double-line"
+        :class="[ { active: UI.ActiveButton == 'SIGNUP' } ]"
         @click="goToLoginView('SIGNUP')"
         v-if="UI.isLoaded"
       >
-        <h2 class="button-title x75">CREATE ACCOUNT</h2>
-        <h3 class="button-subtitle x25">I'M NEW IN TOK</h3>
+        <h2 class="button-title">CREATE ACCOUNT</h2>
+        <h3 class="button-subtitle">I'M NEW IN TOK</h3>
       </button>
     </div>
   </div>
@@ -173,9 +172,9 @@ div.login-view-modal {
 .view-bottom {
   display: block;
   width: 80vw;
-  height: 20vh;
+  height: auto;
   position: fixed;
-  bottom: 5vh;
+  bottom: 1em;
   left: 10vw;
 }
 </style>
