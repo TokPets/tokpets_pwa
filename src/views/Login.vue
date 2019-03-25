@@ -98,7 +98,7 @@ export default {
       <div class="login-logo">
         <img :src="getLogoURL()" >
         <div class="login-announcement signup" v-show="UI.isLoaded && STATE !== 'onSignin' && STATE !== 'onSignup' " @click="STATE = 'onSignup'">
-          <h2 class="announcement title">Create An Account</h2>
+          <h2 class="announcement title">Create An Account **</h2>
           <h2 class="announcement subtitle">I'm new in Tok</h2>
         </div>
       </div>
