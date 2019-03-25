@@ -1,180 +1,233 @@
 <script>
-/* eslint-disable */
+/**
+ * -------------------------------------------
+ * ---- View :: Login ------------------------
+ * -------------------------------------------
+ *
+ * -------------------------------------------
+ */
 
-/* ---------------------------------------------------------- */
-/* -- Import Vendors & Libs --------------------------------- */
-/* ---------------------------------------------------------- */
-import firebase from "firebase";
-import { page } from "vue-analytics";
-/* ---------------------------------------------------------- */
+// --- Vuex States --- //
+import { mapGetters, mapActions } from "vuex";
 
-/* ---------------------------------------------------------- */
-/* -- Import Components ------------------------------------- */
-/* ---------------------------------------------------------- */
-//import { Tabs, Tab } from "./../components/Tabs/index.js";
+// --- TokPets Components --- //
+import TokLoadingBar from "../components/Login/TokLoadingBar";
+import { setTimeout } from 'timers';
 
-import TokCoverImage from "./../components/Login/TokCoverImage.vue";
-import TokLoadingBar from "./../components/Login/TokLoadingBar.vue";
-
-//import FormSignIn from "./../components/FormAuth/FormSignIn";
-//import FormSignUp from "./../components/FormAuth/FormSignUp";
-//import FormRecoveryPassword from "./../components/FormAuth/FormRecoveryPassword";
-/* ---------------------------------------------------------- */
-
-/* ---------------------------------------------------------- */
-/* -- Import Models------------------------------------------- */
-/* ---------------------------------------------------------- */
-import TokUser from "./../models/user.model.js";
-import TokPet from "./../models/pet.model.js";
-/* ---------------------------------------------------------- */
-
+// --- TokPets View Component --- //
 export default {
   name: "login",
 
   components: {
-    //Tabs,
-    //Tab,
-    //FormSignIn,
-    //FormSignUp,
-    //FormRecoveryPassword,
-    TokCoverImage,
     TokLoadingBar
   },
 
+  computed: mapGetters(["count", "recentHistory"]),
   methods: {
-    track() {
-      page("/");
-    },
+      ...mapActions([
+        "increment",
+        "decrement",
+        "incrementIfOdd",
+        "incrementAsync"
+      ]),
+ 
+      nextState(){
+        const currentStateIndex = Math.min(Math.max(0,this.STATES.findIndex( STATE => STATE === this.STATE)), this.STATES.length - 2);
+        const nextState = isNaN(currentStateIndex) ? this.STATES[0] : this.STATES[currentStateIndex + 1];
+        this.STATE = nextState;
+      },
+      prevState(){
+        const currentStateIndex =Math.max(Math.min(0,this.STATES.findIndex( STATE => STATE === this.STATE)), this.STATES.length - 2);
+        const nextState = isNaN(currentStateIndex) ? this.STATES[0] : this.STATES[currentStateIndex - 1];
+        this.STATE = nextState;
+      },
 
-    doShowModal() {
-      this.$modal.show("modal-reset-password");
-    },
+      getLoginStateClass(){
+        let styleClass = 'default';
+        if(this.STATE === 'onSignin') styleClass = 'light';
+        if(this.STATE === 'onSignup') styleClass = 'light';
+        return styleClass;
+      },
 
-    setIntroLoaded() {
-      this.UI.isLoaded = true;
-    },
+      getLogoURL(){
+        let url = '/img/login/tok_blanco.png';
+        if(this.STATE === 'onSignin') url = '/img/login/tok_negro.png';
+        if(this.STATE === 'onSignup') url = '/img/login/tok_negro.png';
+        return url;
+      },
 
-    goToLoginView(viewname) {
-      if (viewname === "SIGNIN") {
-        this.UI.ActiveButton = "SIGNIN";
-        this.UI.isButtonLoaded = true;
-        setTimeout(() => {
-          this.$router.push("login/signin");
-        }, 1000);
+
+      onLoad(){
+        this.UI.isLoaded = true;
+        this.nextState();
+        setTimeout( () => this.nextState() , 1000);
       }
 
-      if (viewname === "SIGNUP") {
-        this.UI.ActiveButton = "SIGNUP";
-        this.UI.isButtonLoaded = true;
-        setTimeout(() => {
-          this.$router.push("login/signup");
-        }, 1000);
-      }
-    }
   },
 
-  created() {
-    this.WINDOW.width = Math.max(window.screen.width * 0.8, 250);
-    this.WINDOW.height = Math.max(window.screen.height * 0.3, 250);
-  },
+  created() {},
 
   mounted() {
-    // Google Analytics Track
-    this.track();
   },
 
   data() {
     return {
-      USER: {},
-      ERROR: {},
-      PET: {},
-      WINDOW: {
-        width: "",
-        height: ""
-      },
       UI: {
-        isLoaded: false,
-        isButtonLoaded: false,
-        ActiveButton: "SIGNIN"
-      }
+        isLoaded : false
+      },
+      STATES : ['onLoading','onLoaded','onTransition','onSignin','onSignup'],
+      STATE : 'onLoading'
     };
   }
 };
 </script>
 
 
+
 <template>
-  <div class="view login-view">
-    <div class="view-top">
-      <tok-cover-image :is-loaded="!UI.isButtonLoaded"/>
-    </div>
 
-    <div class="view-bottom">
-      <tok-loading-bar @onLoaded="setIntroLoaded()"/>
+    <!-- ----------------------------------------------------- -->
+    <!-- --- View::Login                 --------------------- -->
+    <!-- ----------------------------------------------------- -->
+    <div class="view view-login" :class="getLoginStateClass()">
 
-      <button
-        class="button theme-light size-single-line"
-        :class="[{ active: UI.ActiveButton == 'SIGNIN' }]"
-        @click="goToLoginView('SIGNIN')"
-        v-if="UI.isLoaded"
-      >
-        <h2 class="button-title">LOGIN</h2>
-      </button>
+
+      <!-- --------------------------------------------------- -->
+      <!-- --- View::Login => TokPets Logo ------------------- -->
+      <!-- --------------------------------------------------- -->
+      <div class="login-logo">
+        <img :src="getLogoURL()" >
+        <div class="login-announcement signup" v-show="UI.isLoaded && STATE !== 'onSignin' && STATE !== 'onSignup' " @click="STATE = 'onSignup'">
+          <h2 class="announcement title">Create An Account</h2>
+          <h2 class="announcement subtitle">I'm new in Tok</h2>
+        </div>
+      </div>
+        
+      <!-- --------------------------------------------------- -->
+
+
+
       
-      <button
-        class="button theme-transparent-light size-double-line"
-        :class="[ { active: UI.ActiveButton == 'SIGNUP' } ]"
-        @click="goToLoginView('SIGNUP')"
-        v-if="UI.isLoaded"
-      >
-        <h2 class="button-title">CREATE ACCOUNT</h2>
-        <h3 class="button-subtitle">I'M NEW IN TOK</h3>
-      </button>
+      <!-- --------------------------------------------------- -->
+      <!-- --- View::Login => Loading Bar -------------------- -->
+      <!-- --------------------------------------------------- -->
+      <div class="login-loading-bar" v-if="!UI.isLoaded">
+          <tok-loading-bar @onLoaded = "onLoad()"/>
+      </div>
+      <!-- --------------------------------------------------- -->
+
+
+
+
+      <!-- --------------------------------------------------- -->
+      <!-- --- View::Login => Login Button ------------------- -->
+      <!-- --------------------------------------------------- -->
+      <div class="login-button button" :class="getLoginStateClass()"
+      v-show="UI.isLoaded" @click="STATE = 'onSignin'" >
+          <h2 class="button-title"> Log In </h2>
+      </div>
+      <!-- --------------------------------------------------- -->
+
+
     </div>
-  </div>
+    <!-- ----------------------------------------------------- -->
 </template>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <style lang="less">
 @import (reference) "../styles/main.less";
+// -- ---------------------------------- -- //
+// -- -- @Styles :: View/Login --------- -- //
+// -- ---------------------------------- -- //
+div.view.view-login {
 
-div.view.login-view {
+  // -- ---- Constructor ----- -- //
   #view();
+
+  // -- - Themes & Modifiers - -- //
+  &.default{
+    #view-theme-dark(); 
+  }
+  &.light{
+    #view-theme-light(); 
+  }
+  
+
 }
 
-img.login-view-logo {
-  display: block;
-  margin: 0 auto;
-  padding: 0px;
+// -- ---------------------------------- -- //
+// -- -- @Styles :: View/Login --------- -- //
+// -- ---------------------------------- -- //
+div.view.view-login {
+  div.login-logo {
+    img{
+      display: block;
+      height: calc(100% - 4em);
+       margin: 0 auto;
 
-  width: 40vw;
-  height: 75vw;
-}
+       &.logo-class{
+         &-onSignin{
 
-div.login-view-tabs {
-  display: block;
-  width: 100%;
-  max-width: ~"70vw";
-}
+         }
+         &-onSignup{
 
-div.login-view-modal {
-  #ModalResetPassword();
-}
+         }
+       }
+    }
+       display: block;
+       .flex-display(flex);
+       .flex-direction(column);
+       .justify-content(space-between);
+      height: 50%;
+      margin: 0 auto;
+      margin-top: 33%;
+  }
+  div.login-loading-bar{
+    display: block;
+    padding: 5em 0em;
+  }
+  div.login-button{
+    #button();
+  }
 
-.view-top {
-  display: block;
-  width: 80vw;
-  height: 80vh;
-  position: fixed;
-  top: 10vh;
-  left: 10vw;
-}
-.view-bottom {
-  display: block;
-  width: 80vw;
-  height: auto;
-  position: fixed;
-  bottom: 1em;
-  left: 10vw;
+  div.button{
+    &.default{
+      #button-theme-white();
+    }
+    &.light{
+      #button-theme-black();
+    }
+  }
+  
+
+  div.login-announcement{
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid @color-gray;
+    padding-top: 1em;
+    position: relative;
+    top: 0em;
+    .title{
+      font-size: 1em;
+    }
+    .subtitle{
+      font-size: 0.85em;
+      opacity: 0.35;
+    }
+  }
 }
 </style>

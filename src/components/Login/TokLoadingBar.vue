@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template>
-  <div class="progress-bar" v-if="LEVEL < 99">
+  <div class="progress-bar" v-if="LEVEL > -99">
     <div class="background">
       <div class="level" :style="{ width: LEVEL + '%' }"></div>
     </div>
@@ -41,7 +41,7 @@ export default {
   display: block;
   width: 100%;
   position: relative;
-  top: 12vh;
+  top: -1.5em;
 
   .background {
     display: block;
