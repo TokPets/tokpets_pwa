@@ -5,6 +5,7 @@ import App from "./App.vue";
 import router from "./router/router";
 import store from "./store/index";
 
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 import VueAnalytics from "vue-analytics";
 import VModal from "vue-js-modal";
 
@@ -12,6 +13,8 @@ import * as VueGoogleMaps from "vue2-google-maps";
 
 import "./registerServiceWorker";
 import "./plugins/axios";
+
+import 'swiper/dist/css/swiper.css';
 
 Vue.config.productionTip = false;
 
@@ -42,6 +45,7 @@ Vue.use(VueGoogleMaps, {
     libraries: "places" // necessary for places input
   }
 });
+Vue.use(VueAwesomeSwiper);
 
 new Vue({
   router,

@@ -10,6 +10,7 @@ import page from "vue-analytics";
 
 // ------------------------------------ // 
 import Login from "./../views/Login";
+import Signin from "./../views/SignIn";
 // ------------------------------------ // 
 
 Vue.use(Router);
@@ -22,6 +23,11 @@ export default new Router({
       path: "/",
       name: "login",
       component: Login
+    },
+    {
+      path: "/signin",
+      name: "signin",
+      component: Signin
     },
     {
       path: "/main",
