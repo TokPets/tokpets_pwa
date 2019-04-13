@@ -10,7 +10,7 @@ import page from "vue-analytics";
 
 // ------------------------------------ // 
 import Login from "./../views/Login";
-import Signin from "./../views/SignIn";
+import Signin from "./../views/SignUp/signup.vue";
 // ------------------------------------ // 
 
 Vue.use(Router);
