@@ -1,9 +1,8 @@
-export const increment = state => {
-    state.count++
-    state.history.push('increment')
-}
 
-export const decrement = state => {
-    state.count--
-    state.history.push('decrement')
-}
+const SET_TRACKER_CODE = (state, payload) => {
+    state.TRACKER.CODE = payload;
+};
+
+export default {
+    SET_TRACKER_CODE
+};

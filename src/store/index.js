@@ -1,17 +1,20 @@
 
-import Vue from 'vue'
-import Vuex from 'vuex'
-import * as getters from './getters'
-import * as actions from './actions'
-import * as mutations from './mutations'
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+import actions from './actions';
+import getters from './getters';
+import mutations from './mutations';
 
 Vue.use(Vuex)
 
+
 const state = {
-  USER : {},
-  PETS : [],
-  count: 0,
-  history: []
+  USER: {},
+  PETS: [],
+  TRAKER: {
+    CODE: 'XX-XXXXX-XXXX-XXXXX'
+  }
 }
 
 const store = new Vuex.Store({
