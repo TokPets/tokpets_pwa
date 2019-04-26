@@ -65,6 +65,22 @@ export default {
       return styleClass;
     },
 
+    getButtonLoginStateClass() {
+      let styleClass = "default";
+      if (this.STATE === "onSignin") styleClass = "light";
+      if (this.STATE === "onSignup") styleClass = "light";
+      if (this.USER.email.length > 0 && this.USER.password.length > 0) {
+        if (styleClass === "light") {
+          styleClass = styleClass + " active";
+        }
+      } else {
+        if (styleClass === "light") {
+          styleClass = styleClass + " disabled";
+        }
+      }
+      return styleClass;
+    },
+
     getLogoURL() {
       let url = "/img/login/tok_blanco.png";
       if (this.STATE === "onSignin") url = "/img/login/tok_negro.png";
@@ -112,23 +128,32 @@ export default {
       if (this.STATE != "onSignin") {
         this.STATE = "onSignin";
       } else {
-        const auth = new TokAuthHelper();
-        auth
-          .doLogging(this.USER.email, this.USER.password)
-          .then(response => {
-            if (response.status) {
-              this.$router.push("main");
+        if (this.USER.password.length > 0 && this.USER.email.length > 0) {
+          const auth = new TokAuthHelper();
+          auth
+            .doLogging(this.USER.email, this.USER.password)
+            .then(response => {
+              if (response.status) {
+                this.$router.push("main");
+                this.UI.isErrorEmail = false;
+                this.UI.isErrorPassword = false;
+              } else {
+                console.error(response.message.code);
+                console.error(response.message.code === "auth/invalid-email");
+                if (response.message.code === "auth/invalid-email") {
+                  this.UI.isErrorEmail = true;
+                  this.UI.isErrorPassword = false;
+                } else {
+                  this.UI.isErrorEmail = false;
+                  this.UI.isErrorPassword = true;
+                }
+              }
+            })
+            .catch(error => {
               this.UI.isErrorEmail = false;
               this.UI.isErrorPassword = false;
-            } else {
-              this.UI.isErrorEmail = true;
-              this.UI.isErrorPassword = true;
-            }
-          })
-          .catch(error => {
-            this.UI.isErrorEmail = false;
-            this.UI.isErrorPassword = false;
-          });
+            });
+        }
       }
     }
   },
@@ -173,7 +198,7 @@ export default {
         v-show="UI.isLoaded && STATE !== 'onSignin' && STATE !== 'onSignup' "
         @click="goToSignInView()"
       >
-        <h2 class="announcement title">Create An Account **</h2>
+        <h2 class="announcement title">Create an account</h2>
         <h2 class="announcement subtitle">I'm new in Tok</h2>
       </div>
     </div>
@@ -208,7 +233,7 @@ export default {
     <!-- --------------------------------------------------- -->
     <div
       class="login-button button"
-      :class="getLoginStateClass()"
+      :class="getButtonLoginStateClass()"
       v-show="UI.isLoaded"
       @click="doLogin();"
     >
@@ -257,7 +282,7 @@ div.view.view-login {
   div.login-logo {
     img {
       display: block;
-      height: calc(100% - 4em);
+      height: calc(100% - 1em);
       margin: 0 auto;
     }
 
@@ -270,13 +295,16 @@ div.view.view-login {
 
     &.default {
       height: 50%;
-      margin-top: 33%;
+      margin-top: 26%;
     }
     &.light {
       height: 50%;
-      margin-top: 12%;
+      margin-top: 26%;
       img {
-        height: calc(100%);
+        height: ~"calc(100% - 1em)";
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
       }
     }
   }
@@ -295,6 +323,12 @@ div.view.view-login {
     &.light {
       #button-theme-black();
     }
+    &.active {
+      opacity: 1;
+    }
+    &.disabled {
+      opacity: 0.3;
+    }
   }
 
   div.login-announcement {
@@ -304,13 +338,17 @@ div.view.view-login {
     text-align: center;
     border-top: 1px solid @color-gray;
     padding-top: 1em;
+    margin-top: 0.8em;
     position: relative;
     top: 0em;
     .title {
       font-size: 1em;
+      letter-spacing: 1px;
+      padding-bottom: 5px;
     }
     .subtitle {
       font-size: 0.85em;
+      letter-spacing: 1px;
       opacity: 0.35;
     }
   }
@@ -318,6 +356,8 @@ div.view.view-login {
     display: block;
     margin: 0 auto;
     width: calc(100% - 3em);
+    position: relative;
+    padding-bottom: 2.25em;
   }
 }
 </style>

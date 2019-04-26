@@ -21,11 +21,24 @@ export default {
   },
 
   methods: {
-    isError() {
-      return this.UI.isError ? "error" : "default";
+    getClass() {
+      if (this.UI.isError) {
+        return "error";
+      } else {
+        if (this.UI.isClick) {
+          return "typing";
+        } else {
+          return "default";
+        }
+      }
     },
     updatePassword() {
       this.$emit("onPasswordTyped", this.password);
+      if (this.password.length > 0) {
+        this.UI.isClick = true;
+      } else {
+        this.UI.isClick = false;
+      }
     },
     showRecoveryModal() {
       this.UI.isModalRecoveryPasswordOpened = true;
@@ -61,6 +74,7 @@ export default {
     return {
       UI: {
         isError: false,
+        isClick: false,
         isOpenPassword: false,
         isModalRecoveryPasswordOpened: false
       },
@@ -73,32 +87,37 @@ export default {
 <template>
   <div>
     <div>
-      <div class="form-input password" :class="isError()">
+      <div class="form-input password" :class="getClass()">
         <input
           type="password"
-          placeholder="Password Placeholder"
+          placeholder="Password"
           v-model="password"
           v-if="!UI.isOpenPassword"
+          @click="UI.isClick = true"
           @blur="updatePassword()"
+          @keyup="updatePassword()"
         >
         <input
           type="text"
-          placeholder="Password Placeholder"
+          placeholder="Password"
           v-model="password"
           v-if="UI.isOpenPassword"
+          @click="UI.isClick = true"
+          @keyup="updatePassword()"
           @blur="updatePassword()"
         >
         <img class src="../../assets/forms/error_rojo.png" v-if="UI.isError">
+
         <img
           class
-          src="../../assets/forms/ojo_negro.png"
-          v-if="!UI.isError && !UI.isOpenPassword"
+          src="../../assets/login/Registroojo.png"
+          v-if="(!UI.isError && !UI.isOpenPassword) && UI.isClick"
           @click="UI.isOpenPassword = true"
         >
         <img
           class
-          src="../../assets/forms/ojo_blanco.png"
-          v-if="!UI.isError && UI.isOpenPassword"
+          src="../../assets/login/Registroojo tachado.png"
+          v-if="(!UI.isError && UI.isOpenPassword) && UI.isClick"
           @click="UI.isOpenPassword = false"
         >
       </div>
@@ -122,7 +141,8 @@ div.form-input.password {
   width: 100%;
   padding: 0.5em;
   box-sizing: border-box;
-  background-color: white;
+
+  padding: 0.9em 0.5em;
 
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -143,23 +163,41 @@ div.form-input.password {
   -ms-flex-align: center;
   align-items: center;
 
-  border: 1px solid white;
   &.error {
-    border: 1px solid red;
+    border: 1px solid @color-red !important;
+    background-color: white !important;
+    padding: 0.5em 0.3em !important;
   }
 
+  &.default {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #9b9797;
+    opacity: 0.5;
+    input {
+      background: none;
+    }
+  }
+
+  &.typing {
+    border: 1px solid white;
+    background-color: white;
+    padding: 0.5em 0.3em !important;
+    border-bottom: 1px solid @color-black !important;
+  }
   img {
     display: block;
-    width: 2.5em;
+    width: 1.8em;
   }
   input {
     border: none;
-    width: calc(100% - 3em);
+    width: 250px;
     padding: 0px;
+    letter-spacing: 1px;
   }
 }
 span.error-span {
-  color: red;
+  color: @color-red;
   padding: 0.25em;
 }
 </style>

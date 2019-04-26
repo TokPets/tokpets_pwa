@@ -17,18 +17,32 @@ export default {
   mounted() {},
 
   methods: {
-    isError() {
-      return this.UI.isError ? "error" : "default";
+    getClass() {
+      if (this.UI.isError) {
+        return "error";
+      } else {
+        if (this.UI.isClick) {
+          return "typing";
+        } else {
+          return "default";
+        }
+      }
     },
     updateEmail() {
       this.$emit("onEmailTyped", this.email);
+      if (this.email.length > 0) {
+        this.UI.isClick = true;
+      } else {
+        this.UI.isClick = false;
+      }
     }
   },
 
   data() {
     return {
       UI: {
-        isError: false
+        isError: false,
+        isClick: false
       },
       email: ""
     };
@@ -39,8 +53,15 @@ export default {
 <template>
   <div>
     <span class="error-span" v-if="UI.isError">Unregistered e-mail</span>
-    <div class="form-input email" :class="isError()">
-      <input type="email" placeholder="Email Placeholder" v-model="email" @blur="updateEmail()">
+    <div class="form-input email" :class="getClass()">
+      <input
+        type="email"
+        placeholder="Email"
+        v-model="email"
+        @blur="updateEmail()"
+        @keyup="updateEmail()"
+        @click="UI.isClick = true"
+      >
       <img class src="../../assets/forms/error_rojo.png" v-if="UI.isError">
     </div>
   </div>
@@ -51,10 +72,12 @@ export default {
 div.form-input.email {
   display: block;
   width: 100%;
-  padding: 0.5em;
+
+  letter-spacing: 1px;
+  padding: 0.9em 0.5em !important;
 
   box-sizing: border-box;
-  background-color: white;
+
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
@@ -74,25 +97,45 @@ div.form-input.email {
   -ms-flex-align: center;
   align-items: center;
 
-  border: 1px solid white;
   &.error {
-    border: 1px solid red;
+    border: 1px solid @color-red !important;
+    padding: 0.5em 0.3em !important;
+  }
+
+  &.default {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #9b9797;
+    opacity: 0.5;
+    input {
+      background: none;
+    }
+  }
+
+  &.typing {
+    border: 1px solid white;
+    background-color: white;
+    border-bottom: 1px solid @color-black !important;
   }
 
   img {
     display: block;
-    width: 2.5em;
+    width: 1.8em !important;
   }
 
   input {
     border: none;
-    width: calc(100% - 3em);
-    padding: 0px;
+    width: 250px;
+    letter-spacing: 1px !important;
   }
 }
 
 span.error-span {
-  color: red;
-  padding: 0.25em;
+  color: @color-red !important;
+  font-size: 0.8em !important;
+  letter-spacing: 1px !important;
+  position: relative !important;
+  display: block !important;
+  padding: 0.5em 0.7em !important;
 }
 </style>
