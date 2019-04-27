@@ -267,6 +267,9 @@ export default {
     z-index: 100;
     font-family: "HelveticaNeue-Light";
     font-weight: 900;
+    &.disabled {
+      opacity: 0.35;
+    }
   }
 
   .header {
