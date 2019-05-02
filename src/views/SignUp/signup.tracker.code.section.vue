@@ -45,11 +45,9 @@ export default {
     checkCode() {
       return this.DATA.CODE.length > 6;
     },
-    checkFormatCode() {
-      this.DATA.CODE = "asdfasd";
-    },
     doSigninPet() {
-      if (!this.checkCode()) {
+      if (this.checkCode()) {
+        this.$store.dispatch("setTrackerCode", this.DATA.CODE);
         this.$emit("onNextButton");
       }
     },

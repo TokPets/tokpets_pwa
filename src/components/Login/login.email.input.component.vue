@@ -14,7 +14,9 @@ export default {
     }
   },
 
-  mounted() {},
+  mounted() {
+    this.UI.isError = false;
+  },
 
   methods: {
     getClass() {
@@ -56,11 +58,21 @@ export default {
     <div class="form-input email" :class="getClass()">
       <input
         type="email"
-        placeholder="Email"
+        placeholder="Email No.1"
         v-model="email"
         @blur="updateEmail()"
         @keyup="updateEmail()"
         @click="UI.isClick = true"
+      >
+      <input
+        type="email"
+        placeholder="Email No.2"
+        v-model="email"
+        @click="UI.isClick = true"
+      >
+      <input
+        type="email"
+        placeholder="Email No.3"
       >
       <img class src="../../assets/forms/error_rojo.png" v-if="UI.isError">
     </div>
@@ -126,6 +138,7 @@ div.form-input.email {
   input {
     border: none;
     width: 250px;
+    font-size: 14px !important;
     letter-spacing: 1px !important;
   }
 }

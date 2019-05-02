@@ -121,7 +121,10 @@ export default {
     },
 
     doPasswordRecoverySuccess() {
-      this.STATE = this.STATES[1];
+      this.STATE = this.STATES[3];
+      console.log("this.STATES");
+      console.log(this.STATES);
+      console.log(this.STATE);
     },
 
     doLogin() {

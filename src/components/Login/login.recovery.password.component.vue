@@ -1,32 +1,80 @@
 <script>
 /* eslint-disable */
+import LoginEmailInputComponent from "../../components/Login/login.email.input.component";
+import TokAuthHelper from "./../../scripts/auth/auth.helper.js";
+import { setTimeout } from "timers";
 
 export default {
   name: "LoginRecoveryPasswordComponent",
 
   props: ["isModalOn", "isError"],
 
-  mounted() {},
+  components: {
+    LoginEmailInputComponent
+  },
+
+  mounted() {
+    this.ERROR = false;
+  },
 
   methods: {
     clickToClose(command) {
       this.$emit("onClose");
     },
     doSendRecoveryPassword() {
-      this.$emit("onRecoveryPassword", this.EMAIL);
+      if (this.EMAIL.length > 1 && this.EMAIL.includes("@")) {
+        const auth = new TokAuthHelper();
+        auth
+          .doCheckIsEmailIsRegistered(this.EMAIL)
+          .then(response => {
+            console.warn("response");
+            console.warn(response);
+            if (response.isRegistered === true) {
+              this.ERROR = false;
+              this.UI.isSend = true;
+              setTimeout(() => {
+                this.ERROR = false;
+                this.UI.isSend = true;
+                this.isModalOn = false;
+                this.$emit("onRecoveryPassword", this.EMAIL);
+              }, 2000);
+              console.log("OK");
+            } else {
+              this.ERROR = true;
+              this.UI.isSend = false;
+              console.error("ERROR isRegistered False  " + this.EMAIL);
+            }
+          })
+          .catch(error => {
+            console.error("error");
+            console.error(response);
+            this.ERROR = true;
+            this.UI.isSend = false;
+            console.error("ERROR catch " + this.EMAIL);
+          });
+      } else {
+        this.ERROR = true;
+        this.UI.isSend = false;
+        console.error("ERROR no @  " + this.EMAIL);
+      }
+      //this.$emit("onRecoveryPassword", this.EMAIL);
     },
     updateRecoveryEmail() {
-      if (this.EMAIL.length == 0) {
-        this.UI.isClick = false;
+      if (this.EMAIL.length > 2) {
+        this.ERROR = false;
       } else {
-        this.UI.isClick = true;
+        this.ERROR = true;
       }
     },
+    doUpdateEmail($event) {
+      this.EMAIL = $event;
+    },
+    getButtonClass() {},
     getInputClass() {
-      if (this.UI.isClick) {
-        return "disabled";
+      if (this.EMAIL.length > 1) {
+        return "typing";
       } else {
-        return "";
+        return "default-normal";
       }
     }
   },
@@ -34,8 +82,10 @@ export default {
   data() {
     return {
       EMAIL: "",
+      ERROR: true,
       UI: {
-        isClick: false
+        isClick: false,
+        isSend: false
       }
     };
   }
@@ -48,19 +98,25 @@ export default {
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-body">
-            <div class="wrapper">
+            <div class="wrapper" v-if="!UI.isSend">
               <h1 @click="clickToClose()">Reset password</h1>
               <h2>We will send you an e-email with a link to reset your password, please check it.</h2>
-              <input
-                placeholder="E-mail"
-                v-model="EMAIL"
-                @click="UI.isClick = true"
-                @keyup="updateRecoveryEmail()"
-              >
-              <span v-if="isError">Unregisterd Email</span>
+              <!-- -->
+              <!-- -->
+              <LoginEmailInputComponent @onEmailTyped="doUpdateEmail($event)" :error="ERROR"/>
+              <!-- -->
+              <!-- -->
             </div>
-
-            <div class="button" @click="doSendRecoveryPassword()">Send</div>
+            <div class="wrapper" v-if="UI.isSend">
+              <h1>Recovery email has been sended suscesfully</h1>
+              <p>Please check your inbox</p>
+            </div>
+            <div
+              class="button"
+              v-if="!UI.isSend"
+              @click="doSendRecoveryPassword()"
+              :class="getInputClass()"
+            >Send</div>
           </div>
         </div>
       </div>
@@ -153,30 +209,6 @@ export default {
       padding-top: 0.5em;
       padding-bottom: 2.25em;
     }
-    input {
-      display: block;
-      width: 90%;
-      margin: 0 auto;
-      padding: 0em;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      box-sizing: border-box;
-      border: none;
-      outline: none;
-      color: #9b9797;
-      letter-spacing: 1px;
-      padding: 0.9em 0.5em !important;
-      border-bottom: 1px solid #9b9797;
-    }
-    span {
-      display: block;
-      font-size: 13.3px;
-      color: red;
-      padding: 2px;
-      display: block;
-      width: 70%;
-      margin: 0 auto;
-    }
   }
 
   .button {
@@ -187,11 +219,14 @@ export default {
     padding: 1em;
     box-sizing: border-box;
     background-color: @color-black;
-    opacity: 0.3;
+    opacity: 0.6;
     color: white;
     box-shadow: none;
     border: none;
     text-align: center;
+    &.typing {
+      opacity: 1;
+    }
   }
 }
 

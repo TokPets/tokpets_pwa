@@ -1,100 +1,287 @@
 <script>
-import { isError } from "util";
 /* eslint-disable */
 
+import jsonCatBreeds from "../../models/cat.breeds.json";
+import jsonDogsBreeds from "../../models/dog.breeds.json";
+
 export default {
-  name: "SigninPetNameInputComponent",
+  name: "SigninPetBreedInputComponent",
 
-  methods: {},
-
-  props: [],
-
-  watch: {},
-
-  mounted() {},
+  components: {},
 
   methods: {
-    updatePetName() {
-      this.$emit("onPetNameTyped", this.petName);
+    loadBreeds() {
+      this.PET = this.$store.state.PET;
+      console.error(this.PET.type);
+      if (this.PET.type === "CAT") {
+        this.BREEDS = jsonCatBreeds;
+      } else {
+        this.BREEDS = jsonDogsBreeds;
+      }
     },
-    isError() {
-      return this.UI.isError ? "error" : "default";
+    setBreed(breed) {
+      this.BREED = breed;
+      this.$emit("onBreedSelected", breed);
+      //this.closeModal();
+    },
+    goToHome() {
+      this.$router.push("/");
+    },
+    closeModal() {
+      this.UX.modal.active = false;
+    },
+    openModal() {
+      this.UX.modal.active = true;
+      this.loadBreeds();
+    }
+  },
+
+  mounted() {
+    this.loadBreeds();
+  },
+
+  computed: {
+    filteredItems() {
+      return this.BREEDS.filter(item => {
+        return item.includes(this.UX.search.toLowerCase());
+      });
     }
   },
 
   data() {
     return {
-      UI: {
-        isError: false
+      UX: {
+        modal: {
+          active: false
+        },
+        search: ""
       },
-      petName: ""
+
+      PET: {},
+
+      BREEDS: [],
+
+      BREED: ""
     };
   }
 };
 </script>
 
-<template>
+
+
+
+
+ <template>
   <div>
-    <span class="error-span" v-if="UI.isError">ERROR</span>
-    <div class="form-input pet-name" :class="isError()">
-      <input
-        type="text"
-        placeholder="PetName Placeholder"
-        v-model="petName"
-        @blur="updatePetName()"
-      >
-      <img class src="../../assets/forms/error_rojo.png" v-if="UI.isError">
+    <div class="form-input pet-breed">
+      <input type="text" placeholder="Breed" @click="openModal()" v-model="BREED">
+      <img src="../../assets/login/Registroflecha1.png">
+    </div>
+
+    <div class="form-input-modal" v-if="UX.modal.active">
+      <div class="form-input-modal-header">
+        <img
+          class="back-btn"
+          alt="back Button"
+          src="./../../assets/login/Registroflecha2.png"
+          @click="closeModal()"
+        >
+        <img
+          class="home-btn"
+          alt="home Button"
+          src="./../../assets/login/Registrotok.png"
+          @click="goToHome()"
+        >
+      </div>
+
+      <div class="form-input-modal-title">
+        <h1 v-if="PET.type === 'DOG'">
+          <strong>Dog</strong> Breed
+        </h1>
+        <h1 v-if="PET.type === 'CAT'">
+          <strong>Cat</strong> Breed
+        </h1>
+
+        <img
+          v-if="PET.type === 'CAT'"
+          class="btn"
+          alt="home Button"
+          src="./../../assets/login/Registrogato2.png"
+        >
+        <img
+          v-if="PET.type === 'DOG'"
+          class="btn"
+          alt="home Button"
+          src="./../../assets/login/Registroperro1.png"
+        >
+      </div>
+
+      <div class="form-input-modal-search">
+        <input type="text" placeholder="Search ..." v-model="UX.search">
+      </div>
+
+      <ul class="form-input-modal-list">
+        <li class="item" v-for="(breed, index) in BREEDS" :key="index">
+          <div class="wrapper" v-if="breed.toLowerCase().includes(UX.search.toLowerCase())">
+            <h4 class="title">{{ breed }}</h4>
+            <div class="round">
+              <input :id="`Breed-Input-Item-${index}`" type="checkbox" @click="setBreed(breed)">
+              <label :for="`Breed-Input-Item-${index}`"></label>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
-<style lang="less">
-@import "./../../styles/main.less";
-div.form-input.email {
-  display: block;
-  width: 100%;
-  padding: 0.5em;
 
+
+
+
+
+
+
+<style lang="less">
+@import (reference) "./../../styles/main.less";
+.form-input-modal {
+  display: block;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  background-color: @color-cream;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  z-index: 100;
+}
+
+.form-input-modal-header {
+  display: block;
+  width: 100vw;
+  height: 12vh;
+  background-color: rgba(0, 0, 0, 0);
+
+  padding: 0em 1.5em;
   box-sizing: border-box;
-  background-color: white;
+
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
-  align-content: center;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
 
-  border: 1px solid white;
-  &.error {
-    border: 1px solid red;
-  }
-
   img {
-    display: block;
-    width: 2.5em;
-  }
-
-  input {
-    border: none;
-    width: calc(100% - 3em);
-    padding: 0px;
+    width: 3em;
+    padding: 0.5em;
+    &.back-btn {
+      padding-left: 0.5em;
+    }
+    &.home-btn {
+      padding-right: 0.5em;
+    }
   }
 }
 
-span.error-span {
-  color: red;
-  padding: 0.25em;
+.form-input-modal-title {
+  .btn {
+    display: block;
+    width: 30vw;
+    margin: 0 auto;
+  }
+}
+
+.form-input-modal-search {
+  display: block;
+  background-color: white;
+  width: ~"calc( 100% - 3em)";
+  margin: 0 auto;
+  border: 1px solid white;
+  border-radius: 0.5em;
+  padding: 1em;
+  margin-bottom: 2em;
+  box-sizing: border-box;
+  input {
+    width: 100%;
+    padding: 1em;
+    font-size: 13px;
+    color: @color-black;
+    box-sizing: border-box;
+  }
+}
+
+.form-input-modal-list {
+  display: block;
+  width: 100vw;
+  height: auto;
+
+  padding: 0.5em 1.5em;
+  box-sizing: border-box;
+
+  background-color: white;
+
+  .item {
+    width: 100%;
+    padding-bottom: 0em;
+    .wrapper {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      padding: 0em;
+      padding-bottom: 1em;
+      box-sizing: border-box;
+
+      border-bottom: 1px solid @color-black;
+
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-align-content: stretch;
+      -ms-flex-line-pack: stretch;
+      align-content: stretch;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      h4.title {
+        display: inline-block;
+        padding-top: 1em;
+        padding-bottom: 1em;
+      }
+    }
+  }
 }
 </style>
+
+
+
+
+

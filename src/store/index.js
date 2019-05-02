@@ -11,8 +11,14 @@ Vue.use(Vuex)
 
 const state = {
   USER: {},
-  PETS: [],
-  TRAKER: {
+  PET: {
+    name: '',
+    type: 'CAT',
+    gender: '',
+    birthday: '',
+    breed: '',
+  },
+  TRACKER: {
     CODE: 'XX-XXXXX-XXXX-XXXXX'
   }
 }

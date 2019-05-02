@@ -29,72 +29,9 @@
     <!-- -------------------------------- -->
     <!-- --------- PET INFO ------------- -->
     <!-- -------------------------------- -->
-    <section class="section-pet" v-if="UI.isSigninPet">
-      <div class="section-header">
-        <h1>
-          <strong>Pet</strong> Information
-        </h1>
-        <h2>#{{ DATA.CODE | codeToString }}</h2>
-
-        <div class="pet-types">
-          <div
-            class="pet-type cat selected"
-            @click="DATA.PET.type = 'CAT'"
-            v-if="DATA.PET.type ==='CAT'"
-          >
-            <img src="../../assets/login/Registrogato1.png">
-          </div>
-          <div
-            class="pet-type cat unselected"
-            @click="DATA.PET.type = 'CAT'"
-            v-if="DATA.PET.type !== 'CAT'"
-          >
-            <img src="../../assets/login/Registrogato2.png">
-          </div>
-          <div
-            class="pet-type dog selected"
-            @click="DATA.PET.type = 'DOG'"
-            v-if="DATA.PET.type === 'DOG'"
-          >
-            <img src="../../assets/login/Registroperro2.png">
-          </div>
-
-          <div
-            class="pet-type dog unselected"
-            @click="DATA.PET.type = 'DOG'"
-            v-if="DATA.PET.type !=='DOG'"
-          >
-            <img src="../../assets/login/Registroperro1.png">
-          </div>
-        </div>
-      </div>
-      <div class="section-content">
-        <div class="wrapper">
-          <h3>General Information</h3>
-          <div class="pet-inputs">
-            <div class="pet-input pet-name">
-              <signin-pet-name-input-component></signin-pet-name-input-component>
-            </div>
-            <div class="pet-input pet-gender">
-              <signin-pet-gender-input-component></signin-pet-gender-input-component>
-            </div>
-            <div class="pet-input pet-birthday">
-              <signin-pet-birthday-input-component></signin-pet-birthday-input-component>
-            </div>
-            <div class="pet-input pet-breed" v-if="false">
-              <signin-pet-breed-input-component></signin-pet-breed-input-component>
-            </div>
-            <div class="pet-input pet-country" v-if="false">
-              <signin-pet-country-input-component></signin-pet-country-input-component>
-            </div>
-            <div class="pet-input pet-city" v-if="false">
-              <signin-pet-city-input-component></signin-pet-city-input-component>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="button" @click="doSigninUser()" v-if="UI.isSigninPet">CONTINUE</div>
-    </section>
+    <div class="section-pet" v-if="UI.isSigninPet">
+      <SignUpSectionPet @onNextButton="doSigninUser()"/>
+    </div>
   </div>
 </template>
 
@@ -102,13 +39,7 @@
 <script>
 import SignUpSectionTutorial from "../../views/SignUp/signup.tutorial.section";
 import SignUpSectionDeviceCode from "../../views/SignUp/signup.tracker.code.section";
-
-import SigninPetNameInputComponent from "../../components/SignUp/signup.pet.name.input.component";
-import SigninPetGenderInputComponent from "../../components/SignUp/signup.pet.gender.input.component";
-import SigninPetBirthdayInputComponent from "../../components/SignUp/signup.pet.birthday.input.component";
-import SigninPetBreedInputComponent from "../../components/SignUp/signup.pet.breed.input.component";
-import SigninPetCountryInputComponent from "../../components/SignUp/signup.pet.country.input.component";
-import SigninPetCityInputComponent from "../../components/SignUp/signup.pet.city.input.component";
+import SignUpSectionPet from "../../views/SignUp/signup.pet.section";
 
 export default {
   name: "signin",
@@ -116,23 +47,9 @@ export default {
   components: {
     SignUpSectionTutorial,
     SignUpSectionDeviceCode,
-    SigninPetNameInputComponent,
-    SigninPetGenderInputComponent,
-    SigninPetBirthdayInputComponent,
-    SigninPetBreedInputComponent,
-    SigninPetCountryInputComponent,
-    SigninPetCityInputComponent
+    SignUpSectionPet
   },
 
-  filters: {
-    codeToString: function(value) {
-      if (!value) return "";
-      const outStr = value.reduce(function(total, item) {
-        return `${total}${item}`;
-      });
-      return outStr;
-    }
-  },
   data() {
     return {
       DATA: {
@@ -144,7 +61,8 @@ export default {
       },
       UI: {
         isTutorial: true,
-        isTokDeviceCode: false
+        isTokDeviceCode: false,
+        isSigninPet: false
       }
     };
   },
@@ -179,6 +97,7 @@ export default {
     doSkipTutorial() {
       this.UI.isTutorial = false;
       this.UI.isTokDeviceCode = true;
+      this.UI.isSigninPet = false;
     },
 
     doSigninPet() {
@@ -186,6 +105,8 @@ export default {
       this.UI.isTokDeviceCode = false;
       this.UI.isSigninPet = true;
     },
+
+    doSigninUser() {},
 
     getViewClass() {
       return this.UI.isTutorial ? "dark" : "default";

@@ -109,14 +109,14 @@ export default {
         <img class src="../../assets/forms/error_rojo.png" v-if="UI.isError">
 
         <img
-          class
+          class="ojito"
           src="../../assets/login/Registroojo.png"
           v-if="(!UI.isError && !UI.isOpenPassword) && UI.isClick"
           @click="UI.isOpenPassword = true"
         >
         <img
-          class
-          src="../../assets/login/Registroojo tachado.png"
+          class="ojito"
+          src="../../assets/login/Registroojotachado.png"
           v-if="(!UI.isError && UI.isOpenPassword) && UI.isClick"
           @click="UI.isOpenPassword = false"
         >
@@ -141,6 +141,7 @@ div.form-input.password {
   width: 100%;
   padding: 0.5em;
   box-sizing: border-box;
+  font-size: 14px !important;
 
   padding: 0.9em 0.5em;
 
@@ -176,6 +177,7 @@ div.form-input.password {
     opacity: 0.5;
     input {
       background: none;
+      font-size: 12px !important;
     }
   }
 
@@ -188,11 +190,16 @@ div.form-input.password {
   img {
     display: block;
     width: 1.8em;
+    &.ojito {
+      padding: 0.35em;
+      width: 1.2em;
+    }
   }
   input {
     border: none;
     width: 250px;
     padding: 0px;
+    font-size: 14px !important;
     letter-spacing: 1px;
   }
 }
