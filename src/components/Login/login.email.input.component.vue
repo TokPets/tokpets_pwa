@@ -64,16 +64,6 @@ export default {
         @keyup="updateEmail()"
         @click="UI.isClick = true"
       >
-      <input
-        type="email"
-        placeholder="Email No.2"
-        v-model="email"
-        @click="UI.isClick = true"
-      >
-      <input
-        type="email"
-        placeholder="Email No.3"
-      >
       <img class src="../../assets/forms/error_rojo.png" v-if="UI.isError">
     </div>
   </div>
@@ -81,6 +71,14 @@ export default {
 
 <style lang="less">
 @import "./../../styles/main.less";
+
+input, input:before, input:after {
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
 div.form-input.email {
   display: block;
   width: 100%;
