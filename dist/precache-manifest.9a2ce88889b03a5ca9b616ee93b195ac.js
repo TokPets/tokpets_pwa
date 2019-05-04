@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/img/Registroperro1.75337c95.png"
   },
   {
-    "revision": "16780ddefd6ba57cc1b2",
+    "revision": "fafd0bbd1d584bedd7bb",
     "url": "/js/app.12913797.js"
   },
   {
@@ -52,12 +52,12 @@ self.__precacheManifest = [
     "url": "/img/Registroojo.6a73cc07.png"
   },
   {
-    "revision": "bdf8c86b2701043687e1b268fcc07c58",
-    "url": "/img/login/tok_blanco.png"
-  },
-  {
     "revision": "fa40355b992024c7e033f7dc17684b87",
     "url": "/img/login/tok_negro.png"
+  },
+  {
+    "revision": "bdf8c86b2701043687e1b268fcc07c58",
+    "url": "/img/login/tok_blanco.png"
   },
   {
     "revision": "b8ae834dc234dc187a1131bc781430bc",
@@ -68,7 +68,7 @@ self.__precacheManifest = [
     "url": "/img/login/intro-bottom-bg.png"
   },
   {
-    "revision": "d3f6a42488981732305bd8afa0b379cc",
+    "revision": "3550da6a4a5dd14915d3704230aa5534",
     "url": "/index.html"
   },
   {
@@ -104,7 +104,7 @@ self.__precacheManifest = [
     "url": "/css/chunk-vendors.9b56415a.css"
   },
   {
-    "revision": "16780ddefd6ba57cc1b2",
-    "url": "/css/app.ec20890a.css"
+    "revision": "fafd0bbd1d584bedd7bb",
+    "url": "/css/app.52b56a95.css"
   }
 ];
