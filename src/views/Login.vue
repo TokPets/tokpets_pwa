@@ -240,7 +240,7 @@ export default {
       v-show="UI.isLoaded"
       @click="doLogin();"
     >
-      <h2 class="button-title">Log In</h2>
+      <h2 class="button-title">Log In * </h2>
     </div>
     <!-- --------------------------------------------------- -->
   </div>
