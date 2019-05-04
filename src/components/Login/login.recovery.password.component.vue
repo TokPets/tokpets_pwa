@@ -108,8 +108,8 @@ export default {
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-body">
-            <div class="wrapper" v-if="!UI.isSend" v-click-outside="hide" v-touch:swipe.down="hide">
-              <h1 @click="clickToClose()">Reset password</h1>
+            <div class="wrapper" v-if="!UI.isSend">
+              <h1>Reset password</h1>
               <h2>We will send you an e-email with a link to reset your password, please check it.</h2>
               <!-- -->
               <!-- -->
@@ -141,8 +141,9 @@ export default {
   z-index: 9998;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.85);
   display: table;
   transition: opacity 0.3s ease;
