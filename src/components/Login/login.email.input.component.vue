@@ -72,7 +72,9 @@ export default {
 <style lang="less">
 @import "./../../styles/main.less";
 
-input, input:before, input:after {
+input,
+input:before,
+input:after {
   -webkit-user-select: initial;
   -khtml-user-select: initial;
   -moz-user-select: initial;
