@@ -143,7 +143,7 @@ export default {
               } else {
                 console.error(response.message.code);
                 console.error(response.message.code === "auth/invalid-email");
-                if (response.message.code === "auth/invalid-email") {
+                if (response.message.code === "auth/invalid-email" || response.message.code === "auth/user-not-found") {
                   this.UI.isErrorEmail = true;
                   this.UI.isErrorPassword = false;
                 } else {
@@ -240,7 +240,7 @@ export default {
       v-show="UI.isLoaded"
       @click="doLogin();"
     >
-      <h2 class="button-title">Log In * </h2>
+      <h2 class="button-title">Log In</h2>
     </div>
     <!-- --------------------------------------------------- -->
   </div>

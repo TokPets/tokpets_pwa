@@ -177,14 +177,14 @@ div.form-input.password {
     opacity: 0.5;
     input {
       background: none;
-      font-size: 12px !important;
+      font-size: 16px !important;
     }
   }
 
   &.typing {
     border: 1px solid white;
     background-color: white;
-    padding: 0.5em 0.3em !important;
+    padding: 0.9em 0.5em !important;
     border-bottom: 1px solid @color-black !important;
   }
   img {
@@ -199,7 +199,7 @@ div.form-input.password {
     border: none;
     width: 250px;
     padding: 0px;
-    font-size: 14px !important;
+    font-size: 16px !important;
     letter-spacing: 1px;
   }
 }

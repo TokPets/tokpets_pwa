@@ -1,5 +1,7 @@
 <script>
 /* eslint-disable */
+
+import ClickOutside from "vue-click-outside";
 import LoginEmailInputComponent from "../../components/Login/login.email.input.component";
 import TokAuthHelper from "./../../scripts/auth/auth.helper.js";
 import { setTimeout } from "timers";
@@ -18,6 +20,10 @@ export default {
   },
 
   methods: {
+    hide() {
+      this.$emit("onClose");
+      //console.log(" toHide() ");
+    },
     clickToClose(command) {
       this.$emit("onClose");
     },
@@ -88,6 +94,10 @@ export default {
         isSend: false
       }
     };
+  },
+
+  directives: {
+    ClickOutside
   }
 };
 </script>
@@ -98,7 +108,7 @@ export default {
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-body">
-            <div class="wrapper" v-if="!UI.isSend">
+            <div class="wrapper" v-if="!UI.isSend" v-click-outside="hide" v-touch:swipe.down="hide">
               <h1 @click="clickToClose()">Reset password</h1>
               <h2>We will send you an e-email with a link to reset your password, please check it.</h2>
               <!-- -->

@@ -5,6 +5,8 @@ import App from "./App.vue";
 import router from "./router/router";
 import store from "./store/index";
 
+
+import Vue2TouchEvents from 'vue2-touch-events'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import VueAnalytics from "vue-analytics";
 import VModal from "vue-js-modal";
@@ -34,6 +36,7 @@ firebase.initializeApp(config);
 const firestore = firebase.firestore();
 firestore.settings({ timestampsInSnapshots: true });
 
+Vue.use(Vue2TouchEvents);
 Vue.use(VModal);
 Vue.use(VueAnalytics, {
   id: "UA-128950882-1",

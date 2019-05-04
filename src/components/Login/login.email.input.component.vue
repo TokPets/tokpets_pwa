@@ -138,7 +138,7 @@ div.form-input.email {
   input {
     border: none;
     width: 250px;
-    font-size: 14px !important;
+    font-size: 16px !important;
     letter-spacing: 1px !important;
   }
 }
