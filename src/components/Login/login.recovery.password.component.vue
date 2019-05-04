@@ -17,15 +17,24 @@ export default {
 
   mounted() {
     this.ERROR = false;
+    setTimeout(() => {
+      console.log(" UI.isModalContentOn :: Begin");
+      this.UI.isModalContentOn = true;
+    }, 250);
   },
 
   methods: {
     hide() {
-      this.$emit("onClose");
-      //console.log(" toHide() ");
+      setTimeout(() => {
+        console.log(" UI.isModalContentOn :: End");
+        this.UI.isModalContentOn = false;
+        setTimeout(() => {
+          this.$emit("onClose");
+        }, 250);
+      }, 0);
     },
     clickToClose(command) {
-      this.$emit("onClose");
+      //this.$emit("onClose");
     },
     doSendRecoveryPassword() {
       if (this.EMAIL.length > 1 && this.EMAIL.includes("@")) {
@@ -91,6 +100,7 @@ export default {
       ERROR: true,
       UI: {
         isClick: false,
+        isModalContentOn: false,
         isSend: false
       }
     };
@@ -105,8 +115,8 @@ export default {
 <template>
   <transition name="modal" v-if="isModalOn">
     <div class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container">
+      <div class="modal-wrapper" v-bind:class="{ active: UI.isModalContentOn }">
+        <div class="modal-container" v-click-outside="hide" v-touch:swipe.down="hide">
           <div class="modal-body">
             <div class="wrapper" v-if="!UI.isSend">
               <h1>Reset password</h1>
@@ -152,6 +162,28 @@ export default {
 .modal-wrapper {
   display: table-cell;
   vertical-align: bottom;
+
+  position: relative;
+  bottom: -40vh;
+
+  transition-delay: 0s;
+
+  -webkit-transition: bottom 500ms ease-in-out;
+  -moz-transition: bottom 500ms ease-in-out;
+  -ms-transition: bottom 500ms ease-in-out;
+  -o-transition: bottom 500ms ease-in-out;
+  transition: bottom 500ms ease-in-out;
+  &.active {
+    position: relative;
+    bottom: 0vh;
+    -webkit-transition: bottom 500ms ease-in-out;
+    -moz-transition: bottom 500ms ease-in-out;
+    -ms-transition: bottom 500ms ease-in-out;
+    -o-transition: bottom 500ms ease-in-out;
+    transition: bottom 500ms ease-in-out;
+
+    transition-delay: 0s;
+  }
 }
 
 .modal-container {
@@ -164,7 +196,7 @@ export default {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -176,6 +208,7 @@ export default {
 .modal-body {
   margin: 10px 0;
   margin-bottom: 0px;
+
   .wrapper {
     display: block;
     width: 100%;

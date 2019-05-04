@@ -125,6 +125,7 @@ export default {
     </div>
     <div>
       <login-recovery-password-component
+        v-if="UI.isModalRecoveryPasswordOpened"
         :isModalOn="UI.isModalRecoveryPasswordOpened"
         :isError="recoveryError"
         @onClose="doCloseModal()"

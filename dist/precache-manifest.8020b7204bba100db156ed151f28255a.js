@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/img/Registroperro1.75337c95.png"
   },
   {
-    "revision": "de2b46d1128a0ea16b02",
-    "url": "/js/app.b5916c23.js"
+    "revision": "16780ddefd6ba57cc1b2",
+    "url": "/js/app.12913797.js"
   },
   {
     "revision": "cd9c69968a24d0f40457",
@@ -52,12 +52,12 @@ self.__precacheManifest = [
     "url": "/img/Registroojo.6a73cc07.png"
   },
   {
-    "revision": "fa40355b992024c7e033f7dc17684b87",
-    "url": "/img/login/tok_negro.png"
-  },
-  {
     "revision": "bdf8c86b2701043687e1b268fcc07c58",
     "url": "/img/login/tok_blanco.png"
+  },
+  {
+    "revision": "fa40355b992024c7e033f7dc17684b87",
+    "url": "/img/login/tok_negro.png"
   },
   {
     "revision": "b8ae834dc234dc187a1131bc781430bc",
@@ -68,7 +68,7 @@ self.__precacheManifest = [
     "url": "/img/login/intro-bottom-bg.png"
   },
   {
-    "revision": "9b3518225f044802692c568c61f387e8",
+    "revision": "d3f6a42488981732305bd8afa0b379cc",
     "url": "/index.html"
   },
   {
@@ -104,7 +104,7 @@ self.__precacheManifest = [
     "url": "/css/chunk-vendors.9b56415a.css"
   },
   {
-    "revision": "de2b46d1128a0ea16b02",
-    "url": "/css/app.4d0d10d4.css"
+    "revision": "16780ddefd6ba57cc1b2",
+    "url": "/css/app.ec20890a.css"
   }
 ];
