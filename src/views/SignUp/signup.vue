@@ -220,7 +220,7 @@ export default {
     align-items: center;
     box-sizing: border-box;
     padding: 1em;
-    padding-top: 0.75em;
+    padding-top: 0.25em;
     img {
       width: 3.5em;
       padding: 0.5em;

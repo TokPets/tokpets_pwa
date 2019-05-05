@@ -20,7 +20,7 @@
         <div class="intro-card">
           <img class="intro-card-img" src="../../assets/login/Registropaso 2.png">
           <div class="intro-card-content">
-            <h1>What doest it do?</h1>
+            <h1>What does it do?</h1>
             <h2>Tok Tracker locate your pet ubication in real time</h2>
           </div>
         </div>
@@ -31,7 +31,7 @@
           <img class="intro-card-img" src="../../assets/login/Registropaso 3.png">
           <div class="intro-card-content">
             <h1>Also ...</h1>
-            <h2>It also shows you the route where your pete has been and more ...</h2>
+            <h2>It also shows you the route where your pet has been and more...</h2>
           </div>
         </div>
       </swiper-slide>
