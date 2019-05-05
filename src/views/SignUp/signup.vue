@@ -220,6 +220,7 @@ export default {
     align-items: center;
     box-sizing: border-box;
     padding: 1em;
+    padding-top: 0.75em;
     img {
       width: 3.5em;
       padding: 0.5em;
@@ -236,7 +237,7 @@ export default {
       width: 100%;
       height: 70%;
       box-sizing: border-box;
-      padding: 2.5em;
+      padding: 3.25em;
       object-fit: contain;
       object-position: center;
       background-color: #282828;

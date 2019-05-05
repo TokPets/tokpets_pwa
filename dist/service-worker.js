@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.8670935be05ca8a49a6daa59934a3b01.js"
+  "/precache-manifest.cf43e3939c228dd77ad12747ed5f5cbb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "tokpets_pwa"});
