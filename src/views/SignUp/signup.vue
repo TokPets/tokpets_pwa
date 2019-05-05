@@ -3,9 +3,10 @@
     <!-- ------------------------------- -->
     <!-- --------- HEADER -------------- -->
     <!-- ------------------------------- -->
-    <div class="header" v-if="!UI.isTutorial">
+    <div class="header">
       <img src="./../../assets/login/Registroflecha2.png" @click="goBack()">
-      <img src="./../../assets/login/Registrotok.png" @click="goHome()">
+      <img src="./../../assets/login/Registrotok_blanco.png" @click="goHome()" v-if="UI.isTutorial">
+      <img src="./../../assets/login/Registrotok.png" @click="goHome()" v-if="!UI.isTutorial">
     </div>
     <!-- ------------------------------- -->
 
@@ -122,7 +123,7 @@ export default {
   position: relative;
   background-color: @color-cream;
   &.dark {
-    background-color: #282828;
+    background-color: @color-black;
     background: rgba(40, 40, 40, 1);
     background: -moz-linear-gradient(
       top,
@@ -197,6 +198,7 @@ export default {
     position: absolute;
     top: 0px;
     left: 0px;
+    z-index: 10000;
     width: 100%;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -216,6 +218,8 @@ export default {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
+    box-sizing: border-box;
+    padding: 1em;
     img {
       width: 3.5em;
       padding: 0.5em;
@@ -231,6 +235,8 @@ export default {
       display: block;
       width: 100%;
       height: 70%;
+      box-sizing: border-box;
+      padding: 2.5em;
       object-fit: contain;
       object-position: center;
       background-color: #282828;
@@ -238,33 +244,49 @@ export default {
     }
     .intro-card-content {
       display: block;
-      width: 100%;
+      width: 80%;
       height: 30%;
       padding-top: 1em;
+      margin: 0 auto;
       background-color: #ffffff;
       z-index: 0;
+      color: #444444;
+      font-size: 16px;
       h1 {
-        padding: 0px;
-        margin: 0px;
-        padding-top: 0.5em;
-        font-size: 1.5em;
-        text-align: center;
         font-family: "HelveticaNeue-Light";
         font-weight: 900;
+        font-size: 20px;
+        padding: 0px 0px 0px 0px;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.25em;
+        letter-spacing: 1px;
+        opacity: 0.8;
+        padding-top: 1.25em;
       }
       h2 {
         font-family: "HelveticaNeue-Light";
         font-weight: 300;
-        padding: 0px;
+        font-size: 13.3px;
         margin: 0px;
-        padding-top: 0.2em;
-        font-size: 1.2em;
-        font-weight: 300;
-        max-width: 70%;
-        margin: 0 auto;
-        color: gray;
-        display: block;
         text-align: center;
+        padding: 0px 0px 0px 0px;
+        width: 90%;
+        margin: 0 auto;
+        padding-bottom: 1em;
+        padding-top: 1em;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0px;
+        letter-spacing: 1px;
+        line-height: 16px;
+        opacity: 0.7;
+        padding-top: 0.5em;
+        padding-bottom: 2.25em;
       }
     }
   }

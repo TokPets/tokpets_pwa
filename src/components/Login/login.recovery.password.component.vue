@@ -20,18 +20,16 @@ export default {
     setTimeout(() => {
       console.log(" UI.isModalContentOn :: Begin");
       this.UI.isModalContentOn = true;
-    }, 250);
+    }, 0);
   },
 
   methods: {
     hide() {
+      console.log(" UI.isModalContentOn :: End");
+      this.UI.isModalContentOn = false;
       setTimeout(() => {
-        console.log(" UI.isModalContentOn :: End");
-        this.UI.isModalContentOn = false;
-        setTimeout(() => {
-          this.$emit("onClose");
-        }, 250);
-      }, 0);
+        this.$emit("onClose");
+      }, 200);
     },
     clickToClose(command) {
       //this.$emit("onClose");
@@ -123,7 +121,11 @@ export default {
               <h2>We will send you an e-email with a link to reset your password, please check it.</h2>
               <!-- -->
               <!-- -->
-              <LoginEmailInputComponent @onEmailTyped="doUpdateEmail($event)" :error="ERROR"/>
+              <LoginEmailInputComponent
+                @onEmailTyped="doUpdateEmail($event)"
+                :error="ERROR"
+                :errorPosition="'bottom'"
+              />
               <!-- -->
               <!-- -->
             </div>
@@ -263,7 +265,7 @@ export default {
     padding: 1em;
     box-sizing: border-box;
     background-color: @color-black;
-    opacity: 0.6;
+    opacity: 0.3;
     color: white;
     box-shadow: none;
     border: none;

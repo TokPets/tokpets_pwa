@@ -1,4 +1,5 @@
 <script>
+import { setInterval } from "timers";
 /* eslint-disable */
 
 export default {
@@ -6,7 +7,7 @@ export default {
 
   methods: {},
 
-  props: ["error"],
+  props: ["error", "errorPosition"],
 
   watch: {
     error: function(newError, oldError) {
@@ -54,7 +55,12 @@ export default {
 
 <template>
   <div>
-    <span class="error-span" v-if="UI.isError">Unregistered e-mail</span>
+    <span
+      class="error-span"
+      v-if="!UI.isError && errorPosition === 'top'"
+      style="color:rgba(0,0,0,0) !important"
+    >Unregistered e-mail</span>
+    <span class="error-span" v-if="UI.isError && errorPosition === 'top'">Unregistered e-mail</span>
     <div class="form-input email" :class="getClass()">
       <input
         type="email"
@@ -64,8 +70,15 @@ export default {
         @keyup="updateEmail()"
         @click="UI.isClick = true"
       >
+      <img style="opacity:0" class src="../../assets/forms/error_rojo.png" v-if="!UI.isError">
       <img class src="../../assets/forms/error_rojo.png" v-if="UI.isError">
     </div>
+    <span
+      class="error-span"
+      v-if="!UI.isError && errorPosition === 'bottom'"
+      style="color:white !important"
+    >Unregistered e-mail</span>
+    <span class="error-span" v-if="UI.isError && errorPosition === 'bottom'">Unregistered e-mail</span>
   </div>
 </template>
 
@@ -109,9 +122,11 @@ div.form-input.email {
   -ms-flex-align: center;
   align-items: center;
 
+  border: 1px solid rgba(0, 0, 0, 0);
+
   &.error {
     border: 1px solid @color-red !important;
-    padding: 0.5em 0.3em !important;
+    padding: 0.9em 0.5em !important;
   }
 
   &.default {

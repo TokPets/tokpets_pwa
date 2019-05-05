@@ -5,8 +5,13 @@
         <div class="intro-card">
           <img class="intro-card-img" src="../../assets/login/Registropaso 1.png">
           <div class="intro-card-content">
-            <h1>WELCOME</h1>
-            <h2>This is a complementary app for the device Tok Tracker</h2>
+            <h1>Welcome</h1>
+            <h2>
+              This is a complementary app for the device
+              <strong
+                style="font-weight: 900;"
+              >Tok Tracker</strong>
+            </h2>
           </div>
         </div>
       </swiper-slide>
@@ -35,7 +40,7 @@
 
       <div class="swiper-scrollbar" slot="scrollbar"></div>
     </swiper>
-    <div class="button" @click="doSkipTutorial()">SEND</div>
+    <div class="button" @click="doSkipTutorial()">Start</div>
   </section>
 </template>
 
@@ -75,6 +80,17 @@ export default {
 
 <style lang="less">
 section.tutorial {
+  .button {
+    font-size: 16px;
+    padding: 16px;
+    letter-spacing: 1px;
+  }
+  h1 {
+    padding: 1em;
+    strong {
+      font-weight: 900;
+    }
+  }
   .swiper-pagination-bullets {
     background-color: white;
     border: 1px solid white;
@@ -108,6 +124,14 @@ section.tutorial {
     -webkit-align-items: center !important;
     -ms-flex-align: center !important;
     align-items: center !important;
+  }
+
+  .swiper-container-horizontal
+    > .swiper-pagination-bullets
+    .swiper-pagination-bullet {
+    margin: 0px 2px !important;
+    position: relative;
+    top: 5px;
   }
 }
 </style>

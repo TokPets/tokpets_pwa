@@ -168,7 +168,7 @@ div.form-input.password {
   &.error {
     border: 1px solid @color-red !important;
     background-color: white !important;
-    padding: 0.5em 0.3em !important;
+    padding: 0.9em 0.5em !important;
   }
 
   &.default {

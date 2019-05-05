@@ -37,6 +37,9 @@ export default {
       "incrementAsync"
     ]),
 
+    goToBegin() {
+      this.prevState();
+    },
     nextState() {
       const currentStateIndex = Math.min(
         Math.max(0, this.STATES.findIndex(STATE => STATE === this.STATE)),
@@ -143,7 +146,10 @@ export default {
               } else {
                 console.error(response.message.code);
                 console.error(response.message.code === "auth/invalid-email");
-                if (response.message.code === "auth/invalid-email" || response.message.code === "auth/user-not-found") {
+                if (
+                  response.message.code === "auth/invalid-email" ||
+                  response.message.code === "auth/user-not-found"
+                ) {
                   this.UI.isErrorEmail = true;
                   this.UI.isErrorPassword = false;
                 } else {
@@ -195,7 +201,7 @@ export default {
     <!-- --- View::Login => TokPets Logo ------------------- -->
     <!-- --------------------------------------------------- -->
     <div class="login-logo" :class="getLoginStateClass()">
-      <img :src="getLogoURL()">
+      <img :src="getLogoURL()" @click="goToBegin()">
       <div
         class="login-announcement signup"
         v-show="UI.isLoaded && STATE !== 'onSignin' && STATE !== 'onSignup' "
@@ -220,7 +226,11 @@ export default {
     <!-- --- View::Login => Form ---------------------------- -->
     <!-- --------------------------------------------------- -->
     <form class="form signin" v-if="STATE == 'onSignin' || STATE == 'onSignup'">
-      <login-email-input-component @onEmailTyped="doUpdateEmail($event)" :error="UI.isErrorEmail"/>
+      <login-email-input-component
+        @onEmailTyped="doUpdateEmail($event)"
+        :error="UI.isErrorEmail"
+        :errorPosition="'top'"
+      />
       <login-password-input-component
         @onPasswordTyped="doUpdatePassword($event)"
         @onPasswordRecoveryError="doUpdatePasswordError()"
