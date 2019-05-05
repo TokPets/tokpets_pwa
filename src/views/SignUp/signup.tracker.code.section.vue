@@ -8,7 +8,7 @@
 
     <div class="code" :class="getErrorClass()">
       <div class="code-wrapper">
-        <input type="number" @blur="checkCode()" v-model="DATA.CODE">
+        <input type="number" max="9999999" @blur="checkCode()" v-model="DATA.CODE">
       </div>
     </div>
     <span class="error" v-if="getErrorClass() === 'error'">Invalid Tok Tracker Code</span>
