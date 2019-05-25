@@ -4,9 +4,19 @@
     <!-- --------- HEADER -------------- -->
     <!-- ------------------------------- -->
     <div class="header">
-      <img src="./../../assets/login/Registroflecha2.png" @click="goBack()">
-      <img src="./../../assets/login/Registrotok_blanco.png" @click="goHome()" v-if="UI.isTutorial">
-      <img src="./../../assets/login/Registrotok.png" @click="goHome()" v-if="!UI.isTutorial">
+      <img class="back" src="./../../assets/login/Registroflecha2.png" @click="goBack()">
+      <img
+        class="tok"
+        src="./../../assets/login/Registrotok_blanco.png"
+        @click="goHome()"
+        v-if="UI.isTutorial"
+      >
+      <img
+        class="tok"
+        src="./../../assets/login/Registrotok.png"
+        @click="goHome()"
+        v-if="!UI.isTutorial"
+      >
     </div>
     <!-- ------------------------------- -->
 
@@ -123,48 +133,12 @@ export default {
   position: relative;
   background-color: @color-cream;
   &.dark {
-    background-color: @color-black;
-    background: rgba(40, 40, 40, 1);
-    background: -moz-linear-gradient(
-      top,
-      rgba(40, 40, 40, 1) 0%,
-      rgba(40, 40, 40, 1) 69%,
-      rgba(255, 255, 255, 1) 70%,
-      rgba(255, 255, 255, 1) 100%
-    );
-    background: -webkit-gradient(
-      left top,
-      left bottom,
-      color-stop(0%, rgba(40, 40, 40, 1)),
-      color-stop(69%, rgba(40, 40, 40, 1)),
-      color-stop(70%, rgba(255, 255, 255, 1)),
-      color-stop(100%, rgba(255, 255, 255, 1))
-    );
-    background: -webkit-linear-gradient(
-      top,
-      rgba(40, 40, 40, 1) 0%,
-      rgba(40, 40, 40, 1) 69%,
-      rgba(255, 255, 255, 1) 70%,
-      rgba(255, 255, 255, 1) 100%
-    );
-    background: -o-linear-gradient(
-      top,
-      rgba(40, 40, 40, 1) 0%,
-      rgba(40, 40, 40, 1) 69%,
-      rgba(255, 255, 255, 1) 70%,
-      rgba(255, 255, 255, 1) 100%
-    );
-    background: -ms-linear-gradient(
-      top,
-      rgba(40, 40, 40, 1) 0%,
-      rgba(40, 40, 40, 1) 69%,
-      rgba(255, 255, 255, 1) 70%,
-      rgba(255, 255, 255, 1) 100%
-    );
+    background-color: #444444;
+    background: #444444;
     background: linear-gradient(
       to bottom,
-      rgba(40, 40, 40, 1) 0%,
-      rgba(40, 40, 40, 1) 69%,
+      #444444 0%,
+      #444444 69%,
       rgba(255, 255, 255, 1) 70%,
       rgba(255, 255, 255, 1) 100%
     );
@@ -176,7 +150,7 @@ export default {
     width: 100%;
     margin: 0 auto;
     padding: 0px;
-    padding: 1em;
+    padding: 1.25em;
     box-sizing: border-box;
     background-color: @color-black;
     color: white;
@@ -188,7 +162,7 @@ export default {
     bottom: 0px;
     z-index: 100;
     font-family: "HelveticaNeue-Light";
-    font-weight: 900;
+    font-weight: 300;
     &.disabled {
       opacity: 0.35;
     }
@@ -224,6 +198,14 @@ export default {
     img {
       width: 3.5em;
       padding: 0.5em;
+      &.back {
+        width: 2.8em;
+        padding: 0.2em;
+      }
+      &.tok {
+        width: 3.5em;
+        padding: 0.5em;
+      }
     }
   }
 
@@ -238,9 +220,10 @@ export default {
       height: 70%;
       box-sizing: border-box;
       padding: 3.25em;
+      padding-top: 4.5em;
       object-fit: contain;
       object-position: center;
-      background-color: #282828;
+      //background-color: #282828;
       z-index: 0;
     }
     .intro-card-content {
@@ -267,7 +250,7 @@ export default {
         font-size: 1.25em;
         letter-spacing: 1px;
         opacity: 0.8;
-        padding-top: 1.25em;
+        padding-top: 0.6em;
       }
       h2 {
         font-family: "HelveticaNeue-Light";

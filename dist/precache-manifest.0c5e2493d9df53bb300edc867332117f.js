@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/img/Registroperro1.75337c95.png"
   },
   {
-    "revision": "563d9c73a0f63f579de2",
-    "url": "/js/app.efb8d849.js"
+    "revision": "293592784594b1ef3d8b",
+    "url": "/js/app.9caae710.js"
   },
   {
     "revision": "cd9c69968a24d0f40457",
@@ -68,7 +68,7 @@ self.__precacheManifest = [
     "url": "/img/login/intro-bottom-bg.png"
   },
   {
-    "revision": "5eb3452e9a0941708aa811302077d1c1",
+    "revision": "6e89cd7e36760a6c37d3a3416b77dff7",
     "url": "/index.html"
   },
   {
@@ -76,12 +76,12 @@ self.__precacheManifest = [
     "url": "/img/Registropaso 2.37f7cc34.png"
   },
   {
-    "revision": "12a938f13737a8bb607d85885403db59",
-    "url": "/img/Registrocorazon.12a938f1.png"
-  },
-  {
     "revision": "f59aa66f9d5255cff23f0358b09a0977",
     "url": "/img/Registropaso 3.f59aa66f.png"
+  },
+  {
+    "revision": "71e0a805b7e57bfe89e3f9acb194982a",
+    "url": "/img/Registrocorazon_2.71e0a805.png"
   },
   {
     "revision": "f4870bae0ec22cd87aaf5eff85c209d0",
@@ -104,7 +104,7 @@ self.__precacheManifest = [
     "url": "/css/chunk-vendors.9b56415a.css"
   },
   {
-    "revision": "563d9c73a0f63f579de2",
-    "url": "/css/app.5eef0783.css"
+    "revision": "293592784594b1ef3d8b",
+    "url": "/css/app.818f249f.css"
   }
 ];
