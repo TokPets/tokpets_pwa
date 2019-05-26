@@ -123,9 +123,12 @@ section.device-code {
   &.isFocus-onblur {
     .logo {
       display: block;
-      width: 34%;
+      width: 0%;
       padding-top: 115px;
       padding-bottom: 42px;
+    }
+    .button {
+      display: none;
     }
   }
   &.isFocus-onfocus {
@@ -134,6 +137,9 @@ section.device-code {
       width: 34%;
       padding-top: 115px;
       padding-bottom: 42px;
+    }
+    .button {
+      display: block;
     }
   }
 
