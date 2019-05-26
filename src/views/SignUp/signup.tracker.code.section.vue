@@ -1,5 +1,5 @@
 <template>
-  <section class="device-code">
+  <section class="device-code" :class="getSectionClass()">
     <img class="logo" src="../../assets/login/Registrocorazon_2.png">
     <h1>
       <strong>Create</strong> an account
@@ -9,7 +9,13 @@
     <div class="code" :class="getErrorClass()">
       <div class="code-wrapper-mask">
         <div class="code-wrapper">
-          <input maxlength="6" v-model="DATA.CODE" value="0123456">
+          <input
+            maxlength="6"
+            value="0123456"
+            v-model="DATA.CODE"
+            @blur="UX.isCodeOnFocus = false"
+            @focus="UX.isCodeOnFocus = true"
+          >
           <div class="dashed-bar"></div>
         </div>
       </div>
@@ -45,6 +51,11 @@ export default {
         return "disabled";
       }
     },
+
+    getSectionClass() {
+      return this.UX.isCodeOnFocus ? "isFocus-onfocus" : "isFocus-onblur";
+    },
+
     checkCode() {
       return this.DATA.CODE.length > 5;
     },
@@ -74,6 +85,9 @@ export default {
 
   data() {
     return {
+      UX: {
+        isCodeOnFocus: false
+      },
       UI: {
         isDisabled: true
       },
@@ -97,9 +111,6 @@ section.device-code {
   }
 
   .logo {
-    position: absolute;
-    top: 10vh;
-
     display: block;
     width: 34%;
     -webkit-box-sizing: border-box;
@@ -108,10 +119,25 @@ section.device-code {
     padding-top: 115px;
     padding-bottom: 42px;
   }
-  h1 {
-    position: absolute;
-    top: 20vh;
 
+  &.isFocus-onblur {
+    .logo {
+      display: block;
+      width: 34%;
+      padding-top: 115px;
+      padding-bottom: 42px;
+    }
+  }
+  &.isFocus-onfocus {
+    .logo {
+      display: block;
+      width: 0%;
+      padding-top: 135px;
+      padding-bottom: 60px;
+    }
+  }
+
+  h1 {
     font-size: 1.25em;
     font-weight: 300;
     padding-bottom: 0em;
@@ -121,9 +147,6 @@ section.device-code {
     }
   }
   h2 {
-    position: absolute;
-    top: 30vh;
-
     font-size: 13.3px;
     font-weight: 300;
     letter-spacing: 1px;
@@ -158,8 +181,6 @@ section.device-code {
   align-items: center;
 
   .code {
-    position: absolute;
-    top: 50vh;
     background-color: @color-white;
     padding: 7px 20px;
     margin: 20px 0px;
