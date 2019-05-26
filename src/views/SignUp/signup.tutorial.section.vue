@@ -3,7 +3,11 @@
     <swiper :options="swiperOption" ref="tutorialSwiper">
       <swiper-slide>
         <div class="intro-card">
-          <img class="intro-card-img" src="../../assets/login/Registropaso 1.png">
+          <img
+            class="intro-card-img"
+            src="../../assets/login/Registropaso 1.png"
+            @click="goToHome()"
+          >
           <div class="intro-card-content">
             <h1>Welcome</h1>
             <h2>
@@ -58,6 +62,9 @@ export default {
   methods: {
     doSkipTutorial() {
       this.$emit("onNextButton");
+    },
+    goToHome() {
+      this.$router.push("/");
     }
   },
 
