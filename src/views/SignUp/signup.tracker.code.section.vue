@@ -149,6 +149,8 @@ section.device-code {
   align-items: center;
 
   .code {
+    position: absolute;
+    top: 50vh;
     background-color: @color-white;
     padding: 7px 20px;
     margin: 20px 0px;

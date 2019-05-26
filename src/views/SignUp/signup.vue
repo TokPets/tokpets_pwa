@@ -84,21 +84,19 @@ export default {
         this.UI.isTutorial = true;
         this.UI.isTokDeviceCode = false;
         this.UI.isSigninPet = false;
+        this.$router.push("/");
         return true;
-      }
-
-      if (this.UI.isTokDeviceCode) {
+      } else if (this.UI.isTokDeviceCode) {
         this.UI.isTutorial = true;
         this.UI.isTokDeviceCode = false;
         this.UI.isSigninPet = false;
         return true;
-      }
-
-      if (this.UI.isSigninPet) {
+      } else if (this.UI.isSigninPet) {
         this.UI.isTutorial = false;
         this.UI.isTokDeviceCode = true;
         this.UI.isSigninPet = false;
         return true;
+      } else {
       }
     },
     goHome() {
