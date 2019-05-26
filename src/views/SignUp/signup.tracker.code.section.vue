@@ -131,9 +131,9 @@ section.device-code {
   &.isFocus-onfocus {
     .logo {
       display: block;
-      width: 0%;
-      padding-top: 135px;
-      padding-bottom: 60px;
+      width: 34%;
+      padding-top: 115px;
+      padding-bottom: 42px;
     }
   }
 
