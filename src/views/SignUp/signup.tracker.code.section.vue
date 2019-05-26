@@ -97,6 +97,9 @@ section.device-code {
   }
 
   .logo {
+    position: absolute;
+    top: 10vh;
+
     display: block;
     width: 34%;
     -webkit-box-sizing: border-box;
@@ -106,6 +109,9 @@ section.device-code {
     padding-bottom: 42px;
   }
   h1 {
+    position: absolute;
+    top: 20vh;
+
     font-size: 1.25em;
     font-weight: 300;
     padding-bottom: 0em;
@@ -115,6 +121,9 @@ section.device-code {
     }
   }
   h2 {
+    position: absolute;
+    top: 30vh;
+
     font-size: 13.3px;
     font-weight: 300;
     letter-spacing: 1px;
