@@ -1,6 +1,17 @@
+// ------------------------------------ //
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./../views/Home.vue";
+// ------------------------------------ // 
+
+// ------------------------------------ // 
+import firebase from "firebase";
+import page from "vue-analytics";
+// ------------------------------------ // 
+
+// ------------------------------------ // 
+import Login from "./../views/Login";
+import Signin from "./../views/SignUp/signup.vue";
+// ------------------------------------ // 
 
 Vue.use(Router);
 
@@ -10,8 +21,13 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "login",
+      component: Login
+    },
+    {
+      path: "/signin",
+      name: "signin",
+      component: Signin
     },
     {
       path: "/main",
